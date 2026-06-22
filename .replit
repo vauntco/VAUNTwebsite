@@ -1,0 +1,16 @@
+run = "npm run dev"
+entrypoint = "index.html"
+modules = ["nodejs-20"]
+hidden = [".config", "dist", "node_modules"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+deploymentTarget = "static"
+publicDir = "dist"
+build = ["sh", "-c", "npm ci && npm run build"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80

@@ -1,0 +1,27 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#05070A"/>
+      <stop offset="1" stop-color="#0B0E14"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#1D9BF0" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1D9BF0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="v" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#45B6FF"/>
+      <stop offset="1" stop-color="#0B63B5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(600 232)">
+    <g transform="translate(-66 -66) scale(2.75)">
+      <path d="M9 11 C20 9, 33 11, 41 9 C36 15, 28 16, 22 16 L19 16 Z" fill="url(#v)" opacity="0.9"/>
+      <path d="M12 15 L24 40 L36 15 L29 15 L24 28 L19 15 Z" fill="url(#v)"/>
+    </g>
+  </g>
+  <text x="600" y="420" text-anchor="middle" font-family="'Space Grotesk', Arial, sans-serif" font-size="92" font-weight="700" fill="#FFFFFF" letter-spacing="6">VAUNT</text>
+  <text x="600" y="478" text-anchor="middle" font-family="'Space Grotesk', Arial, sans-serif" font-size="30" font-weight="500" fill="#9AA6B5" letter-spacing="2">More Than An Agency.</text>
+  <text x="600" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#5C6675">Detroit Based, Global Reach · vaunt.co</text>
+</svg>
