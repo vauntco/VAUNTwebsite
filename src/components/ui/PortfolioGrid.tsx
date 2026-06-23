@@ -1,8 +1,9 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { portfolioItems, portfolioFilters, type PortfolioItem, type PortfolioCategory } from '../../data/portfolio'
 import PortfolioCard from './PortfolioCard'
 import TiltCard from '../motion/TiltCard'
+import Lightbox from './Lightbox'
 
 interface PortfolioGridProps {
   items?: PortfolioItem[]
@@ -17,6 +18,8 @@ export default function PortfolioGrid({
 }: PortfolioGridProps) {
   const reduce = useReducedMotion()
   const [active, setActive] = useState<'All' | PortfolioCategory>('All')
+  const [openItem, setOpenItem] = useState<PortfolioItem | null>(null)
+  const closeLightbox = useCallback(() => setOpenItem(null), [])
 
   const filtered = useMemo(() => {
     const base = active === 'All' ? items : items.filter((i) => i.category === active)
@@ -57,12 +60,14 @@ export default function PortfolioGrid({
               className={item.featured && i === 0 ? 'sm:col-span-2 lg:col-span-1' : ''}
             >
               <TiltCard className="h-full" max={7}>
-                <PortfolioCard item={item} className="glow-hover h-full" />
+                <PortfolioCard item={item} className="glow-hover h-full" onOpen={() => setOpenItem(item)} />
               </TiltCard>
             </motion.div>
           ))}
         </AnimatePresence>
       </div>
+
+      <Lightbox item={openItem} onClose={closeLightbox} />
     </div>
   )
 }

@@ -1,10 +1,18 @@
 import { useRef } from 'react'
-import { motion, useReducedMotion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import Button from '../ui/Button'
+import {
+  motion,
+  useReducedMotion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useMotionTemplate,
+} from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { ArrowDown } from 'lucide-react'
 import Eyebrow from '../ui/Eyebrow'
 import Magnet from '../motion/Magnet'
 import PortfolioCard from '../ui/PortfolioCard'
+import HeroForm from '../forms/HeroForm'
 import { featuredItems } from '../../data/portfolio'
 
 interface Placement {
@@ -31,13 +39,25 @@ export default function Hero() {
   const reduce = useReducedMotion()
   const cards = featuredItems.slice(0, placements.length)
 
-  // Whole-cluster parallax tilt driven by cursor position over the stage.
+  // Cursor spotlight across the whole hero.
+  const sectionRef = useRef<HTMLElement>(null)
+  const spotX = useMotionValue(-400)
+  const spotY = useMotionValue(-400)
+  const spotlight = useMotionTemplate`radial-gradient(560px circle at ${spotX}px ${spotY}px, rgba(29,155,240,0.10), transparent 72%)`
+
+  // Cluster parallax tilt.
   const stageRef = useRef<HTMLDivElement>(null)
   const mx = useMotionValue(0.5)
   const my = useMotionValue(0.5)
   const rotateX = useSpring(useTransform(my, [0, 1], [10, -10]), { stiffness: 120, damping: 20 })
   const rotateY = useSpring(useTransform(mx, [0, 1], [-12, 12]), { stiffness: 120, damping: 20 })
 
+  function onSectionMove(e: React.MouseEvent<HTMLElement>) {
+    if (reduce || !sectionRef.current) return
+    const r = sectionRef.current.getBoundingClientRect()
+    spotX.set(e.clientX - r.left)
+    spotY.set(e.clientY - r.top)
+  }
   function onStageMove(e: React.MouseEvent<HTMLDivElement>) {
     if (reduce || !stageRef.current) return
     const r = stageRef.current.getBoundingClientRect()
@@ -50,7 +70,13 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative overflow-hidden pb-12 pt-32 sm:pt-36 lg:pb-20 lg:pt-40">
+    <section
+      ref={sectionRef}
+      onMouseMove={onSectionMove}
+      className="relative overflow-hidden pb-12 pt-32 sm:pt-36 lg:pb-20 lg:pt-40"
+    >
+      {!reduce && <motion.div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: spotlight }} />}
+
       <div className="container-v">
         {/* headline block */}
         <div className="mx-auto max-w-4xl text-center">
@@ -59,7 +85,7 @@ export default function Hero() {
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <Eyebrow>Website Design</Eyebrow>
+            <Eyebrow>Website Design · Branding · Marketing</Eyebrow>
           </motion.div>
 
           <motion.h1
@@ -77,22 +103,20 @@ export default function Hero() {
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.16 }}
           >
-            Stunning websites that blend form and function, enhancing user experience
-            while reflecting your brand&apos;s identity and driving conversions.
+            Stunning websites, brands, and marketing systems — built end to end in Detroit,
+            shipped everywhere.
           </motion.p>
 
           <motion.div
-            className="mt-9 flex flex-wrap items-center justify-center gap-4"
+            className="mt-9 flex flex-col items-center gap-4"
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.24 }}
           >
-            <Button to="/services/web-design">
-              Learn More <ArrowRight size={17} />
-            </Button>
-            <Button to="/contact" variant="ghost">
-              Let&apos;s Talk
-            </Button>
+            <HeroForm />
+            <Link to="/work" className="inline-flex items-center gap-1.5 text-sm text-ink-secondary transition-colors hover:text-white">
+              or see the work <ArrowDown size={14} />
+            </Link>
           </motion.div>
         </div>
 
@@ -101,17 +125,13 @@ export default function Hero() {
           ref={stageRef}
           onMouseMove={onStageMove}
           onMouseLeave={onStageLeave}
-          className="perspective-1400 relative mx-auto mt-14 h-[360px] max-w-5xl sm:h-[440px] lg:mt-20 lg:h-[520px]"
+          className="perspective-1400 relative mx-auto mt-14 h-[360px] max-w-5xl sm:h-[440px] lg:mt-16 lg:h-[520px]"
         >
-          {/* ambient glow under cluster */}
           <div
             aria-hidden
             className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 bg-glow-blob opacity-60 blur-2xl"
           />
-          <motion.div
-            className="preserve-3d absolute inset-0"
-            style={reduce ? undefined : { rotateX, rotateY }}
-          >
+          <motion.div className="preserve-3d absolute inset-0" style={reduce ? undefined : { rotateX, rotateY }}>
             {cards.map((item, i) => {
               const p = placements[i]
               return (
