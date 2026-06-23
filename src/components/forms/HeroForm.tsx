@@ -1,10 +1,12 @@
 import { useState, type FormEvent } from 'react'
 import { ArrowRight, ChevronDown, CheckCircle2, Loader2 } from 'lucide-react'
+import { services } from '../../data/services'
 
 // Reuses the contact webhook. TODO(Jacob): set VITE_GHL_WEBHOOK_URL.
 const WEBHOOK = import.meta.env.VITE_GHL_WEBHOOK_URL as string | undefined
 
-const NEEDS = ['Website', 'Ads', 'CRM / VMS', 'Branding', 'Social Media', 'SEO', 'Not sure yet']
+// Mirror the live service list, plus catch-alls for VMS and undecided visitors.
+const NEEDS = [...services.map((s) => s.name), 'CRM / VMS', 'Not sure yet']
 
 type Status = 'idle' | 'submitting' | 'success'
 
@@ -70,7 +72,7 @@ export default function HeroForm() {
       <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-3 text-base sm:text-lg">
         <span className="text-ink-secondary">I need</span>
         <span className="relative inline-flex items-center">
-          <select name="need" aria-label="What you need" defaultValue="Website" className="field-inline font-semibold">
+          <select name="need" aria-label="What you need" defaultValue="Web Design" className="field-inline font-semibold">
             {NEEDS.map((n) => (
               <option key={n} value={n}>
                 {n}

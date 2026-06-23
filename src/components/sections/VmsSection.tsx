@@ -2,9 +2,11 @@ import { Check, ArrowRight } from 'lucide-react'
 import SectionHeading from '../ui/SectionHeading'
 import FadeIn from '../motion/FadeIn'
 import Button from '../ui/Button'
+import GlowIcon from '../ui/GlowIcon'
 import { vmsBlocks, vmsRows, vmsTotals } from '../../data/vms'
 
-export default function VmsSection() {
+/** showHeading=false on the dedicated /vms page (PageHero already carries the title). */
+export default function VmsSection({ showHeading = true }: { showHeading?: boolean }) {
   return (
     <section id="vms" className="section-pad relative overflow-hidden">
       {/* featured glow backdrop */}
@@ -13,25 +15,30 @@ export default function VmsSection() {
         className="pointer-events-none absolute left-1/2 top-0 -z-0 h-[600px] w-[900px] -translate-x-1/2 bg-glow-blob opacity-30 blur-3xl"
       />
       <div className="container-v relative">
-        <SectionHeading
-          eyebrow="Vaunt Marketing System"
-          title={
-            <>
-              Cancel, Save, <span className="text-glow">and Organize.</span>
-            </>
-          }
-          intro="One system that replaces your entire stack of marketing tools — and the team to run it."
-        />
+        {showHeading && (
+          <SectionHeading
+            eyebrow="Vaunt Marketing System"
+            title={
+              <>
+                Cancel, Save, <span className="text-glow">and Organize.</span>
+              </>
+            }
+            intro="One system that replaces your entire stack of marketing tools — and the team to run it."
+          />
+        )}
 
         {/* Four narrative blocks */}
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <div className={`grid gap-5 md:grid-cols-2 ${showHeading ? 'mt-14' : ''}`}>
           {vmsBlocks.map((block, i) => (
             <FadeIn key={block.index} delay={(i % 2) * 0.08}>
               <div className="glass glow-hover flex h-full flex-col p-7">
-                <span className="font-display text-3xl font-bold tabular-nums text-brand/40">
-                  {block.index}
-                </span>
-                <h3 className="mt-3 font-display text-xl font-semibold text-white">{block.title}</h3>
+                <div className="flex items-center justify-between">
+                  <GlowIcon name={block.glow} size={168} />
+                  <span className="font-display text-3xl font-bold tabular-nums text-brand/40">
+                    {block.index}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-xl font-semibold text-white">{block.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-secondary">{block.body}</p>
                 <p className="mt-4 text-sm font-medium italic text-brand-bright">{block.kicker}</p>
               </div>
@@ -43,7 +50,7 @@ export default function VmsSection() {
         <FadeIn className="mt-12" delay={0.1}>
           <div className="glass glow overflow-hidden">
             <div className="border-b border-[var(--hairline)] p-6 sm:p-8">
-              <h3 className="font-display text-2xl font-bold text-white">Cancel, Save, and Organize.</h3>
+              <h3 className="font-display text-2xl font-bold text-white">Replace your entire stack.</h3>
               <p className="mt-2 text-sm text-ink-secondary">
                 Everything VMS replaces — and what you stop paying for.
               </p>

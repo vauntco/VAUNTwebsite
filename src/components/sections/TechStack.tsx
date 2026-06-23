@@ -14,6 +14,10 @@ function ToolChip({ brand }: { brand: Brand }) {
   )
 }
 
+const mid = Math.ceil(techBrands.length / 2)
+const toolRowA = techBrands.slice(0, mid)
+const toolRowB = techBrands.slice(mid)
+
 export default function TechStack() {
   return (
     <section className="py-16">
@@ -23,14 +27,9 @@ export default function TechStack() {
           The platforms and tools we build, automate, and grow with.
         </p>
       </div>
-      <div className="mt-10">
-        <Marquee items={techBrands.map((b) => <ToolChip key={b.name} brand={b} />)} duration={46} />
-      </div>
-      <div className="container-v mt-8 text-center">
-        <span className="inline-flex items-center gap-2 text-xs text-ink-tertiary">
-          <span className="h-1.5 w-1.5 rounded-full bg-brand shadow-[0_0_8px_var(--glow-blue)]" />
-          Built with Claude Code
-        </span>
+      <div className="mt-10 space-y-4">
+        <Marquee items={toolRowA.map((b) => <ToolChip key={b.name} brand={b} />)} duration={46} />
+        <Marquee items={toolRowB.map((b) => <ToolChip key={b.name} brand={b} />)} reverse duration={54} />
       </div>
     </section>
   )

@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useState } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { portfolioItems, portfolioFilters, type PortfolioItem, type PortfolioCategory } from '../../data/portfolio'
 import PortfolioCard from './PortfolioCard'
 import TiltCard from '../motion/TiltCard'
@@ -16,7 +15,6 @@ export default function PortfolioGrid({
   showFilters = true,
   limit,
 }: PortfolioGridProps) {
-  const reduce = useReducedMotion()
   const [active, setActive] = useState<'All' | PortfolioCategory>('All')
   const [openItem, setOpenItem] = useState<PortfolioItem | null>(null)
   const closeLightbox = useCallback(() => setOpenItem(null), [])
@@ -47,24 +45,21 @@ export default function PortfolioGrid({
         </div>
       )}
 
+      {/* Re-keying each card by the active filter remounts it so the entrance
+          animation replays on filter change. CSS entrance (card-rise) so cards
+          always end visible regardless of JS animation timing. */}
       <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((item, i) => (
-            <motion.div
-              key={item.id}
-              layout={!reduce}
-              initial={reduce ? false : { opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={reduce ? undefined : { opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1], delay: reduce ? 0 : (i % 3) * 0.04 }}
-              className={item.featured && i === 0 ? 'sm:col-span-2 lg:col-span-1' : ''}
-            >
-              <TiltCard className="h-full" max={7}>
-                <PortfolioCard item={item} className="glow-hover h-full" onOpen={() => setOpenItem(item)} />
-              </TiltCard>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        {filtered.map((item, i) => (
+          <div
+            key={`${active}-${item.id}`}
+            className={`card-rise ${item.featured && i === 0 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
+            style={{ animationDelay: `${(i % 3) * 60}ms` }}
+          >
+            <TiltCard className="h-full" max={7}>
+              <PortfolioCard item={item} className="glow-hover h-full" onOpen={() => setOpenItem(item)} />
+            </TiltCard>
+          </div>
+        ))}
       </div>
 
       <Lightbox item={openItem} onClose={closeLightbox} />

@@ -152,7 +152,10 @@ export interface TeamMember {
 export const team: TeamMember[] = [
   { name: 'Jacob Brikho', role: 'Founder, CEO' },
   { name: 'Peter Shamoon', role: 'COO' },
-  { name: 'Ian Green', role: 'Account Manager' },
   { name: 'Fasih Zia', role: 'Lead Developer' },
+  { name: 'Ali Behraz', role: 'CRM Specialist' },
+  { name: 'Afraz Khan', role: 'Automation Expert' },
+  { name: 'Rhyannah Sanchai', role: 'Graphic Designer' },
+  { name: 'Mohsin Shojah', role: 'SEO Expert' },
   { name: 'You?', role: "We're Hiring" },
 ]

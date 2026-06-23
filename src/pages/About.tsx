@@ -61,15 +61,15 @@ export default function About() {
             title="Lean Crew, Big Impact"
             intro="Small team, big impact. Our driven leaders bring years of experience and a track record of success, with hundreds of successful projects under our belt."
           />
-          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {team.map((member, i) => (
-              <FadeIn key={member.name} delay={(i % 5) * 0.05}>
-                <div className="glass glow-hover flex h-full flex-col items-center p-6 text-center">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[rgba(120,180,255,0.06)] font-display text-xl font-bold text-brand-bright">
+              <FadeIn key={member.name} delay={(i % 3) * 0.06}>
+                <div className="glass glow-hover flex h-full flex-col items-center p-8 text-center sm:p-10">
+                  <span className="flex h-24 w-24 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[rgba(120,180,255,0.06)] font-display text-3xl font-bold text-brand-bright">
                     {member.name === 'You?' ? '+' : member.name.split(' ').map((n) => n[0]).join('')}
                   </span>
-                  <h3 className="mt-4 font-display text-base font-semibold text-white">{member.name}</h3>
-                  <p className="mt-1 text-xs text-ink-secondary">{member.role}</p>
+                  <h3 className="mt-5 font-display text-xl font-semibold text-white">{member.name}</h3>
+                  <p className="mt-1.5 text-sm text-ink-secondary">{member.role}</p>
                 </div>
               </FadeIn>
             ))}

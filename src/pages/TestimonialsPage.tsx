@@ -16,7 +16,7 @@ export default function TestimonialsPage() {
         title={<><span className="text-glow">Real</span> Voices, <span className="text-glow">Real</span> Results</>}
         intro="Don't take our word for it — here's what our clients have to say."
       />
-      <Testimonials />
+      <Testimonials showHeading={false} />
       <ContactSection />
     </>
   )

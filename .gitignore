@@ -17,6 +17,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# claude (personal/local — keep launch.json + settings.json committable)
+.claude/settings.local.json
+
 # editor / os
 .vscode/*
 !.vscode/extensions.json

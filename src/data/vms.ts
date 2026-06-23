@@ -5,6 +5,8 @@ export interface VmsBlock {
   title: string
   body: string
   kicker: string
+  /** Glowing 3D icon in /public/icons (mapped from VMS.png). */
+  glow: string
 }
 
 export const vmsBlocks: VmsBlock[] = [
@@ -13,24 +15,28 @@ export const vmsBlocks: VmsBlock[] = [
     title: 'Be Seen. Be Chosen. Be Remembered.',
     body: 'The Vaunt Marketing System brings your business to life online — connecting your SMART Website, social media, reputation management, and SEO into one seamless ecosystem. Your site adapts, your reviews grow, your posts stay active, and your brand stays visible across every platform that matters.',
     kicker: 'When people search, scroll, or share — they find you first.',
+    glow: 'website',
   },
   {
     index: '02',
     title: 'Your Customer Command Center',
     body: 'All your conversations, contacts, and bookings live in one place. The built-in CRM organizes pipelines, automates reminders, manages calendars, and segments lists for smarter follow-ups. No more scattered tools or missed opportunities, just one connected system for your entire customer journey.',
     kicker: 'Where organization meets opportunity.',
+    glow: 'audience',
   },
   {
     index: '03',
     title: 'Automate. Engage. Grow.',
     body: "Once your system is live, it works for you. It reactivates past customers, sends offers, manages campaigns, and follows up instantly. From promos, newsletters, reactivation campaigns, and flash sales to targeted text and email automations, your marketing keeps moving even when you're not.",
     kicker: 'Make your list work for you.',
+    glow: 'marketing',
   },
   {
     index: '04',
     title: 'Done For You. Built To Scale.',
     body: "More than software — it's execution with expertise behind it. Our team plans, builds, and adapts your marketing through ongoing campaigns, creative strategy, and automation that keeps improving over time. It's an evolving engine that moves with your business and the market around it.",
     kicker: 'Real people. Real strategy. Real growth.',
+    glow: 'crm-ppl',
   },
 ]
 

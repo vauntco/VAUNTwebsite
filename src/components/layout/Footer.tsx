@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* Brand + contact */}
           <div>
-            <Logo />
+            <Logo size={40} />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-secondary">
               {site.mission}
             </p>

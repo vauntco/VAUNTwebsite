@@ -1,4 +1,4 @@
-import { Maximize2, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import type { PortfolioItem } from '../../data/portfolio'
 
 interface PortfolioCardProps {
@@ -18,10 +18,12 @@ interface PortfolioCardProps {
 export default function PortfolioCard({ item, className = '', compact = false, onOpen }: PortfolioCardProps) {
   const thumb = item.thumbnail ?? item.gallery?.hero
   const interactive = !!onOpen
+  // Only website projects get the browser-window chrome; branding/print use a clean border.
+  const isWebsite = item.category === 'Websites'
 
   return (
     <figure
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-card ${
+      className={`group/card relative flex flex-col overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-card ${
         interactive ? 'cursor-pointer' : ''
       } ${className}`}
       {...(interactive
@@ -39,17 +41,19 @@ export default function PortfolioCard({ item, className = '', compact = false, o
           }
         : {})}
     >
-      {/* browser chrome */}
-      <div className={`flex items-center gap-1.5 border-b border-[var(--hairline)] bg-[rgba(255,255,255,0.02)] px-3 ${compact ? 'h-6' : 'h-8'}`}>
-        <span className="h-2 w-2 rounded-full bg-[#ff5f57]/70" />
-        <span className="h-2 w-2 rounded-full bg-[#febc2e]/70" />
-        <span className="h-2 w-2 rounded-full bg-[#28c840]/70" />
-        {!compact && (
-          <span className="ml-3 truncate rounded bg-[rgba(255,255,255,0.04)] px-2 py-0.5 text-[10px] text-ink-tertiary">
-            {item.id}.com
-          </span>
-        )}
-      </div>
+      {/* browser-window chrome — websites only */}
+      {isWebsite && (
+        <div className={`flex items-center gap-1.5 border-b border-[var(--hairline)] bg-[rgba(255,255,255,0.02)] px-3 ${compact ? 'h-6' : 'h-8'}`}>
+          <span className="h-2 w-2 rounded-full bg-[#ff5f57]/70" />
+          <span className="h-2 w-2 rounded-full bg-[#febc2e]/70" />
+          <span className="h-2 w-2 rounded-full bg-[#28c840]/70" />
+          {!compact && (
+            <span className="ml-3 truncate rounded bg-[rgba(255,255,255,0.04)] px-2 py-0.5 text-[10px] text-ink-tertiary">
+              {item.id}.com
+            </span>
+          )}
+        </div>
+      )}
 
       {/* media / placeholder */}
       <div className="relative aspect-[16/10] w-full overflow-hidden">
@@ -58,7 +62,7 @@ export default function PortfolioCard({ item, className = '', compact = false, o
             src={thumb}
             alt={`${item.title} — ${item.note}`}
             loading="lazy"
-            className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover object-top transition-transform duration-700 group-hover/card:scale-[1.03]"
           />
         ) : (
           <div
@@ -77,11 +81,11 @@ export default function PortfolioCard({ item, className = '', compact = false, o
           {item.category}
         </span>
 
-        {/* hover affordance */}
+        {/* hover affordance — glassmorphic arrow, only on the hovered card */}
         {interactive && (
-          <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-[rgba(5,7,10,0.45)] opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
-            <span className="flex items-center gap-2 rounded-full border border-[var(--glass-border)] bg-[rgba(5,7,10,0.7)] px-4 py-2 text-sm font-medium text-white">
-              <Maximize2 size={15} /> View gallery
+          <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center opacity-0 backdrop-blur-[3px] transition-opacity duration-300 group-hover/card:opacity-100">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white shadow-[0_8px_30px_-6px_rgba(29,155,240,0.55)] backdrop-blur-md transition-transform duration-300 scale-90 group-hover/card:scale-100">
+              <ArrowUpRight size={24} strokeWidth={2.25} />
             </span>
           </div>
         )}
@@ -102,7 +106,7 @@ export default function PortfolioCard({ item, className = '', compact = false, o
           {interactive && (
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-bright">
               View gallery
-              <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight size={15} className="transition-transform group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5" />
             </span>
           )}
         </figcaption>

@@ -17,7 +17,7 @@ export default function Vms() {
         title={<>Cancel, Save, <span className="text-glow">and Organize.</span></>}
         intro="One system that replaces your entire stack of marketing tools — and the team to run it."
       />
-      <VmsSection />
+      <VmsSection showHeading={false} />
       <SmartWebsites />
       <ContactSection />
     </>

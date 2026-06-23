@@ -19,11 +19,11 @@ export const navItems: NavItem[] = [
     children: services.map((s) => ({ label: s.name, to: `/services/${s.slug}` })),
   },
   { label: 'Work', to: '/work' },
+  { label: 'VMS', to: '/vms' },
   {
     label: 'More',
-    to: '/vms',
+    to: '/blog',
     children: [
-      { label: 'VMS', to: '/vms' },
       { label: 'Blog', to: '/blog' },
       { label: 'Testimonials', to: '/testimonials' },
       { label: 'Partner Program', to: '/partner-program' },

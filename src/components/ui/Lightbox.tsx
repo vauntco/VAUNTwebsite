@@ -94,13 +94,7 @@ function ShotView({ item, shot }: { item: PortfolioItem; shot: Shot }) {
 function Thumb({ item, shot }: { item: PortfolioItem; shot: Shot }) {
   return (
     <div className="aspect-[4/3] w-full overflow-hidden lg:aspect-video" style={{ background: gradient(item.hue) }}>
-      {shot.src ? (
-        <img src={shot.src} alt="" className="h-full w-full object-cover object-top" />
-      ) : (
-        <div className="flex h-full items-center justify-center">
-          <span className="font-display text-xs font-semibold text-white/80">{shot.label}</span>
-        </div>
-      )}
+      {shot.src && <img src={shot.src} alt="" className="h-full w-full object-cover object-top" />}
     </div>
   )
 }
@@ -184,16 +178,13 @@ export default function Lightbox({ item, onClose }: { item: PortfolioItem | null
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  aria-label={`Show ${s.label}`}
+                  aria-label={`View ${i + 1}`}
                   aria-current={i === active}
                   className={`relative w-28 shrink-0 overflow-hidden rounded-lg border transition lg:w-full ${
                     i === active ? 'border-brand shadow-glow-sm' : 'border-[var(--glass-border)] opacity-60 hover:opacity-100'
                   }`}
                 >
                   <Thumb item={item} shot={s} />
-                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-2 py-1 text-left text-[10px] font-medium text-white">
-                    {s.label}
-                  </span>
                 </button>
               ))}
             </div>

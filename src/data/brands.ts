@@ -11,6 +11,18 @@ import {
   siMailchimp,
   siN8n,
   siMake,
+  siGoogle,
+  siGoogleads,
+  siMeta,
+  siYelp,
+  siNextdoor,
+  siYoutube,
+  siGoogleanalytics,
+  siGooglesearchconsole,
+  siVite,
+  siNextdotjs,
+  siReplit,
+  siReact,
 } from 'simple-icons'
 
 export interface Brand {
@@ -49,3 +61,42 @@ export const techBrands: Brand[] = [
   { name: 'Zapier', path: siZapier.path },
   { name: 'Facebook', path: siFacebook.path },
 ]
+
+/**
+ * Named brand glyphs reused across service pages (channel / platform logos).
+ * Rendered monochrome by <BrandGlyph> so they stay cohesive on the dark UI.
+ */
+export const brand: Record<string, Brand> = {
+  google: { name: 'Google', path: siGoogle.path },
+  googleAds: { name: 'Google Ads', path: siGoogleads.path },
+  googleLSA: { name: 'Google LSA', path: siGoogle.path },
+  googleBusiness: { name: 'Google Business', path: siGoogle.path },
+  searchConsole: { name: 'Search Console', path: siGooglesearchconsole.path },
+  analytics: { name: 'Analytics', path: siGoogleanalytics.path },
+  meta: { name: 'Meta', path: siMeta.path },
+  facebook: { name: 'Facebook', path: siFacebook.path },
+  instagram: { name: 'Instagram', path: siInstagram.path },
+  tiktok: { name: 'TikTok', path: siTiktok.path },
+  youtube: { name: 'YouTube', path: siYoutube.path },
+  linkedin: { name: 'LinkedIn', path: LINKEDIN_PATH },
+  yelp: { name: 'Yelp', path: siYelp.path },
+  nextdoor: { name: 'Nextdoor', path: siNextdoor.path },
+  wordpress: { name: 'WordPress', path: siWordpress.path },
+  webflow: { name: 'Webflow', path: siWebflow.path },
+  shopify: { name: 'Shopify', path: siShopify.path },
+  figma: { name: 'Figma', path: siFigma.path },
+  vite: { name: 'Vite', path: siVite.path },
+  nextjs: { name: 'Next.js', path: siNextdotjs.path },
+  react: { name: 'React', path: siReact.path },
+  replit: { name: 'Replit', path: siReplit.path },
+  lovable: { name: 'Lovable', monogram: 'Lv' },
+  photoshop: { name: 'Photoshop', monogram: 'Ps' },
+  illustrator: { name: 'Illustrator', monogram: 'Ai' },
+  chatgpt: { name: 'ChatGPT', path: OPENAI_PATH, viewBox: '0 0 256 260' },
+  n8n: { name: 'n8n', path: siN8n.path },
+  make: { name: 'Make', path: siMake.path },
+  zapier: { name: 'Zapier', path: siZapier.path },
+  clickup: { name: 'ClickUp', path: siClickup.path },
+  mailchimp: { name: 'Mailchimp', path: siMailchimp.path },
+  ghl: { name: 'GoHighLevel', monogram: 'GHL' },
+}

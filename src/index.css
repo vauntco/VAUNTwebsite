@@ -99,23 +99,16 @@
     border-color: rgba(120, 180, 255, 0.4);
   }
 
-  /* Eyebrow label — blue, uppercase, letter-spaced (Spec §2) */
+  /* Eyebrow label — blue, uppercase, letter-spaced (no leading rule) */
   .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     color: var(--blue-bright);
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-  }
-  .eyebrow::before {
-    content: '';
-    width: 1.75rem;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--blue));
   }
 
   /* Gradient text used on accent words */
@@ -124,88 +117,89 @@
     text-shadow: 0 0 24px var(--glow-blue);
   }
 
-  /* Primary CTA pill — glossy electric-blue, glowing (matches brand button) */
+  /* Primary CTA — tactile push-button. A solid darker "base" sits under the
+     face; on :active the button travels down onto it for a real key-press feel. */
   .btn-cta {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.9rem 1.75rem;
-    min-height: 46px;
-    border-radius: 9999px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-style: italic;
+    padding: 0.85rem 1.7rem;
+    min-height: 50px;
+    border-radius: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: 0.95rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0.005em;
     color: #fff;
-    text-shadow: 0 1px 2px rgba(6, 38, 73, 0.5);
-    background: linear-gradient(180deg, #6fc3ff 0%, #2aa0f4 42%, #1483da 70%, #0b63b5 100%);
+    text-shadow: 0 1px 1px rgba(4, 30, 60, 0.45);
+    background: linear-gradient(180deg, #5cb8ff 0%, #2099f2 52%, #1689e6 100%);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.6),
-      inset 0 -3px 9px rgba(4, 40, 80, 0.38),
-      0 0 0 1px rgba(120, 180, 255, 0.45),
-      0 10px 34px -8px var(--glow-blue);
-    transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.2s ease;
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 1px rgba(4, 40, 80, 0.30),
+      0 5px 0 0 #0a5aa0,
+      0 9px 18px -4px rgba(29, 155, 240, 0.55);
+    transition: transform 0.11s cubic-bezier(0.3, 0.7, 0.4, 1), box-shadow 0.11s ease, filter 0.16s ease;
     cursor: pointer;
-    overflow: hidden;
-    isolation: isolate;
-  }
-  /* glossy top sheen */
-  .btn-cta::before {
-    content: '';
-    position: absolute;
-    inset: 1px 1px 46% 1px;
-    border-radius: 9999px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
-    pointer-events: none;
-    z-index: -1;
+    will-change: transform;
   }
   .btn-cta:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.07) saturate(1.05);
+    filter: brightness(1.05) saturate(1.04);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.65),
-      inset 0 -3px 9px rgba(4, 40, 80, 0.38),
-      0 0 0 1px rgba(120, 180, 255, 0.75),
-      0 18px 52px -8px var(--glow-blue);
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 1px rgba(4, 40, 80, 0.30),
+      0 6px 0 0 #0a5aa0,
+      0 14px 28px -6px rgba(29, 155, 240, 0.7);
   }
   .btn-cta:active {
-    transform: translateY(0);
-    filter: brightness(0.98);
+    transform: translateY(5px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -1px 1px rgba(4, 40, 80, 0.30),
+      0 0 0 0 #0a5aa0,
+      0 4px 10px -4px rgba(29, 155, 240, 0.5);
   }
 
-  /* Secondary / ghost glass button */
+  /* Secondary / ghost — same tactile press, glass face */
   .btn-ghost {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.9rem 1.6rem;
-    min-height: 46px;
-    border-radius: 9999px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-style: italic;
+    padding: 0.85rem 1.6rem;
+    min-height: 50px;
+    border-radius: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: 0.95rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0.005em;
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.04);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
     border: 1px solid var(--glass-border);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 4px 0 0 rgba(110, 150, 210, 0.12),
+      0 9px 18px -8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.11s cubic-bezier(0.3, 0.7, 0.4, 1), background 0.16s ease, border-color 0.16s ease, box-shadow 0.11s ease;
     cursor: pointer;
   }
   .btn-ghost:hover {
-    background: rgba(120, 180, 255, 0.1);
-    border-color: rgba(120, 180, 255, 0.5);
-    transform: translateY(-2px);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 30px -10px var(--glow-blue);
+    background: linear-gradient(180deg, rgba(120, 180, 255, 0.16), rgba(120, 180, 255, 0.06));
+    border-color: rgba(120, 180, 255, 0.45);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      0 5px 0 0 rgba(120, 165, 230, 0.16),
+      0 12px 24px -8px rgba(29, 155, 240, 0.4);
+  }
+  .btn-ghost:active {
+    transform: translateY(4px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 0 0 0 rgba(120, 165, 230, 0.16),
+      0 4px 10px -6px rgba(0, 0, 0, 0.5);
   }
 
   /* Inline "sentence" form fields (hero quick-start form) */
@@ -266,6 +260,16 @@
   /* Radial glow blobs for section backgrounds */
   .bg-glow-blob {
     background: radial-gradient(circle at center, var(--glow-blue) 0%, transparent 70%);
+  }
+
+  /* Reliable CSS entrance for grid cards (does not depend on JS/IntersectionObserver;
+     ends visible, and reduced-motion completes it instantly via the global override). */
+  @keyframes card-rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card-rise {
+    animation: card-rise 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) both;
   }
 
   /* Hairline grid / divider */

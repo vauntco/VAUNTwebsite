@@ -40,9 +40,9 @@ export default function Nav() {
           : 'bg-transparent'
       }`}
     >
-      <nav className="container-v flex h-[68px] items-center justify-between" aria-label="Primary">
+      <nav className="container-v flex h-[80px] items-center justify-between" aria-label="Primary">
         <Link to="/" aria-label="VAUNT home" className="rounded-md">
-          <Logo />
+          <Logo size={46} />
         </Link>
 
         {/* Desktop nav */}
@@ -70,12 +70,12 @@ export default function Nav() {
                   </button>
                   {openDropdown === item.label && (
                     <div className="absolute left-1/2 top-full w-60 -translate-x-1/2 pt-3">
-                      <ul className="glass glow overflow-hidden p-2">
+                      <ul className="overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[rgba(8,11,16,0.98)] p-2 shadow-[0_0_0_1px_var(--glass-border),0_20px_50px_-12px_rgba(0,0,0,0.8)] backdrop-blur-xl">
                         {item.children.map((child) => (
                           <li key={child.to}>
                             <Link
                               to={child.to}
-                              className="block rounded-lg px-3 py-2 text-sm text-ink-secondary transition-colors hover:bg-[rgba(120,180,255,0.08)] hover:text-white"
+                              className="block rounded-lg px-3 py-2 text-sm text-ink-secondary transition-colors hover:bg-[rgba(120,180,255,0.1)] hover:text-white"
                             >
                               {child.label}
                             </Link>
@@ -120,7 +120,7 @@ export default function Nav() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="lg:hidden">
-          <div className="container-v max-h-[calc(100dvh-68px)] overflow-y-auto pb-10 pt-2">
+          <div className="container-v max-h-[calc(100dvh-80px)] overflow-y-auto pb-10 pt-2">
             <ul className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <li key={item.label} className="border-b border-[var(--hairline)]">

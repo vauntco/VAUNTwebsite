@@ -1,5 +1,6 @@
 import SectionHeading from '../ui/SectionHeading'
 import FadeIn from '../motion/FadeIn'
+import GlowIcon from '../ui/GlowIcon'
 import { smartFeatures } from '../../data/smartFeatures'
 
 export default function SmartWebsites() {
@@ -17,23 +18,16 @@ export default function SmartWebsites() {
           intro="Not just a website — a SMART Website. Built to attract, convert, and grow with your business."
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2">
           {smartFeatures.map((feature, i) => {
-            const Icon = feature.icon
-            const wide = i === 0 // first item spans wider for rhythm
+            const wide = i === smartFeatures.length - 1 // last item closes the grid full-width
             return (
-              <FadeIn
-                key={feature.name}
-                delay={(i % 4) * 0.05}
-                className={wide ? 'sm:col-span-2 lg:col-span-1 xl:col-span-2' : ''}
-              >
-                <div className="glass glow-hover flex h-full items-start gap-4 p-6">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[var(--glass-border)] bg-[rgba(120,180,255,0.06)] text-brand-bright">
-                    <Icon size={20} strokeWidth={1.75} />
-                  </span>
+              <FadeIn key={feature.name} delay={(i % 2) * 0.06} className={wide ? 'sm:col-span-2' : ''}>
+                <div className={`glass glow-hover flex h-full items-center gap-6 p-7 ${wide ? 'sm:justify-center sm:gap-8' : ''}`}>
+                  <GlowIcon name={feature.glow} size={96} className="shrink-0" />
                   <div>
-                    <h3 className="font-display text-base font-semibold text-white">{feature.name}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-secondary">{feature.line}</p>
+                    <h3 className="font-display text-xl font-semibold text-white">{feature.name}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink-secondary sm:text-[15px]">{feature.line}</p>
                   </div>
                 </div>
               </FadeIn>
