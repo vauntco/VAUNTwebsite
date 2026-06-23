@@ -8,14 +8,14 @@ export default function Work() {
   return (
     <>
       <Seo
-        title="Selected Work"
+        title="Work"
         path="/work"
-        description="A look at selected work from Vaunt — websites, branding, and print built to attract, convert, and grow."
+        description="See the work. Websites, branding, and print from Vaunt — judge for yourself. Our work speaks volumes, showcasing unmatched attention to detail."
       />
       <PageHero
-        eyebrow="Selected Work"
-        title={<>The Work That <span className="text-glow">Speaks.</span></>}
-        intro="A cross-section of the brands we've built, refreshed, and grown."
+        eyebrow="Portfolio"
+        title={<>Let Our <span className="text-glow">Work</span> Speak</>}
+        intro="Judge for yourself. Our work speaks volumes, showcasing unmatched attention to detail. We take pride in every project we deliver."
       />
       <section className="pb-12">
         <div className="container-v">

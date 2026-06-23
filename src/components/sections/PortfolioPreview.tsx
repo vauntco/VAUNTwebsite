@@ -17,8 +17,8 @@ export default function PortfolioPreview() {
         <PortfolioGrid limit={6} />
 
         <FadeIn className="mt-12 flex justify-center" delay={0.1}>
-          <Button to="/portfolio" variant="ghost">
-            View Full Portfolio <ArrowRight size={17} />
+          <Button to="/work" variant="ghost">
+            View All Work <ArrowRight size={17} />
           </Button>
         </FadeIn>
       </div>

@@ -21,6 +21,7 @@ function generateSitemap() {
         route = route.replace(/\/index\.html$/, '').replace(/\.html$/, '')
         if (route === '') route = '/'
         if (route === '/404') continue
+        if (route === '/portfolio') continue // redirect to /work
         if (!urls.includes(route)) urls.push(route)
       }
     }

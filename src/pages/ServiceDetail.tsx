@@ -59,7 +59,7 @@ export default function ServiceDetail({ slug }: { slug: string }) {
               </p>
               <div className="mt-7 flex flex-wrap gap-4">
                 <Button to="/contact">Let&apos;s Talk</Button>
-                <Button to="/portfolio" variant="ghost">See Our Work</Button>
+                <Button to="/work" variant="ghost">See Our Work</Button>
               </div>
             </FadeIn>
           </div>

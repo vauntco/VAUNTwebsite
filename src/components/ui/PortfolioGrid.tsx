@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { portfolioItems, portfolioFilters, type PortfolioItem, type PortfolioCategory } from '../../data/portfolio'
 import PortfolioCard from './PortfolioCard'
+import TiltCard from '../motion/TiltCard'
 
 interface PortfolioGridProps {
   items?: PortfolioItem[]
@@ -55,7 +56,9 @@ export default function PortfolioGrid({
               transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1], delay: reduce ? 0 : (i % 3) * 0.04 }}
               className={item.featured && i === 0 ? 'sm:col-span-2 lg:col-span-1' : ''}
             >
-              <PortfolioCard item={item} className="glow-hover h-full" />
+              <TiltCard className="h-full" max={7}>
+                <PortfolioCard item={item} className="glow-hover h-full" />
+              </TiltCard>
             </motion.div>
           ))}
         </AnimatePresence>

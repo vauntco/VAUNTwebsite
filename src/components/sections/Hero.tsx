@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useReducedMotion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Button from '../ui/Button'
 import Eyebrow from '../ui/Eyebrow'
@@ -10,7 +11,7 @@ interface Placement {
   pos: string
   rot: string
   float: string
-  z: string
+  zi: string
   glow?: boolean
   blur?: boolean
   dim?: string
@@ -19,16 +20,34 @@ interface Placement {
 }
 
 const placements: Placement[] = [
-  { pos: 'left-1/2 top-1/2 w-[clamp(250px,30vw,400px)] -translate-x-1/2 -translate-y-1/2', rot: '0deg', float: '0s', z: 'z-30', glow: true },
-  { pos: 'left-[2%] top-[8%] w-[clamp(170px,17vw,250px)]', rot: '-9deg', float: '1.1s', z: 'z-20', dim: 'opacity-80', compact: true },
-  { pos: 'right-[1%] top-[15%] w-[clamp(170px,17vw,250px)]', rot: '8deg', float: '0.5s', z: 'z-20', dim: 'opacity-80', compact: true },
-  { pos: 'left-[12%] bottom-[2%] w-[clamp(150px,13vw,200px)]', rot: '-5deg', float: '1.7s', z: 'z-10', blur: true, dim: 'opacity-55', compact: true, hide: 'hidden md:block' },
-  { pos: 'right-[10%] bottom-[0%] w-[clamp(150px,13vw,200px)]', rot: '6deg', float: '0.3s', z: 'z-10', blur: true, dim: 'opacity-55', compact: true, hide: 'hidden md:block' },
+  { pos: 'left-1/2 top-1/2 w-[clamp(250px,30vw,400px)] -translate-x-1/2 -translate-y-1/2', rot: '0deg', float: '0s', zi: 'z-30', glow: true },
+  { pos: 'left-[2%] top-[8%] w-[clamp(170px,17vw,250px)]', rot: '-9deg', float: '1.1s', zi: 'z-20', dim: 'opacity-80', compact: true },
+  { pos: 'right-[1%] top-[15%] w-[clamp(170px,17vw,250px)]', rot: '8deg', float: '0.5s', zi: 'z-20', dim: 'opacity-80', compact: true },
+  { pos: 'left-[12%] bottom-[2%] w-[clamp(150px,13vw,200px)]', rot: '-5deg', float: '1.7s', zi: 'z-10', blur: true, dim: 'opacity-55', compact: true, hide: 'hidden md:block' },
+  { pos: 'right-[10%] bottom-[0%] w-[clamp(150px,13vw,200px)]', rot: '6deg', float: '0.3s', zi: 'z-10', blur: true, dim: 'opacity-55', compact: true, hide: 'hidden md:block' },
 ]
 
 export default function Hero() {
   const reduce = useReducedMotion()
   const cards = featuredItems.slice(0, placements.length)
+
+  // Whole-cluster parallax tilt driven by cursor position over the stage.
+  const stageRef = useRef<HTMLDivElement>(null)
+  const mx = useMotionValue(0.5)
+  const my = useMotionValue(0.5)
+  const rotateX = useSpring(useTransform(my, [0, 1], [10, -10]), { stiffness: 120, damping: 20 })
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-12, 12]), { stiffness: 120, damping: 20 })
+
+  function onStageMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (reduce || !stageRef.current) return
+    const r = stageRef.current.getBoundingClientRect()
+    mx.set((e.clientX - r.left) / r.width)
+    my.set((e.clientY - r.top) / r.height)
+  }
+  function onStageLeave() {
+    mx.set(0.5)
+    my.set(0.5)
+  }
 
   return (
     <section className="relative overflow-hidden pb-12 pt-32 sm:pt-36 lg:pb-20 lg:pt-40">
@@ -78,29 +97,39 @@ export default function Hero() {
         </div>
 
         {/* floating portfolio cluster — the centerpiece (Spec §4.4) */}
-        <div className="relative mx-auto mt-14 h-[360px] max-w-5xl sm:h-[440px] lg:mt-20 lg:h-[520px]">
+        <div
+          ref={stageRef}
+          onMouseMove={onStageMove}
+          onMouseLeave={onStageLeave}
+          className="perspective-1400 relative mx-auto mt-14 h-[360px] max-w-5xl sm:h-[440px] lg:mt-20 lg:h-[520px]"
+        >
           {/* ambient glow under cluster */}
           <div
             aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 bg-glow-blob opacity-50 blur-2xl"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 bg-glow-blob opacity-60 blur-2xl"
           />
-          {cards.map((item, i) => {
-            const p = placements[i]
-            return (
-              <div key={item.id} className={`absolute ${p.pos} ${p.z} ${p.hide ?? ''}`}>
-                <Magnet strength={p.glow ? 0.3 : 0.18}>
-                  <div className="animate-float" style={{ animationDelay: p.float }}>
-                    <div
-                      style={{ transform: `rotate(${p.rot})` }}
-                      className={`${p.glow ? 'glow rounded-2xl' : ''} ${p.blur ? 'blur-[1.5px]' : ''} ${p.dim ?? ''}`}
-                    >
-                      <PortfolioCard item={item} compact={p.compact} />
+          <motion.div
+            className="preserve-3d absolute inset-0"
+            style={reduce ? undefined : { rotateX, rotateY }}
+          >
+            {cards.map((item, i) => {
+              const p = placements[i]
+              return (
+                <div key={item.id} className={`absolute ${p.pos} ${p.zi} ${p.hide ?? ''}`}>
+                  <Magnet strength={p.glow ? 0.3 : 0.18}>
+                    <div className="animate-float" style={{ animationDelay: p.float }}>
+                      <div
+                        style={{ transform: `rotate(${p.rot})` }}
+                        className={`${p.glow ? 'glow rounded-2xl' : ''} ${p.blur ? 'blur-[1.5px]' : ''} ${p.dim ?? ''}`}
+                      >
+                        <PortfolioCard item={item} compact={p.compact} />
+                      </div>
                     </div>
-                  </div>
-                </Magnet>
-              </div>
-            )
-          })}
+                  </Magnet>
+                </div>
+              )
+            })}
+          </motion.div>
         </div>
       </div>
     </section>
