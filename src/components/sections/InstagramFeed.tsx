@@ -39,7 +39,10 @@ export default function InstagramFeed() {
           <div className="elfsight-app-69154e80-c8ff-46cb-bc7c-955feaa91f44" data-elfsight-app-lazy />
         </FadeIn>
 
-        <FadeIn className="mt-10 flex justify-center" delay={0.1}>
+        {/* Pulled up to sit over the Elfsight free-plan badge that pins itself
+            to the widget's bottom edge. The button is fully opaque and wider/
+            taller than the badge, so it covers it without touching the widget. */}
+        <FadeIn className="relative z-10 -mt-12 flex justify-center" delay={0.1}>
           <Button href={IG_URL} ariaLabel="Follow Vaunt on Instagram">
             <Instagram size={18} /> Follow @vaunt_co
           </Button>
