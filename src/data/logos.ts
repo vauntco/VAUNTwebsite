@@ -46,7 +46,7 @@ export const clientLogos: ClientLogo[] = [
   { name: 'Greg Davis Landscapes', src: '/logos/greg-davis.png', invert: true },
   { name: 'Upon Arrival Deliveries', src: '/logos/upon-arrival.png', invert: true },
   { name: 'TagBuddy', src: '/logos/tagbuddy.png' },
-  { name: 'Avas Roofing', src: '/logos/avas-roofing.png' },
+  { name: 'Ayar Roofing', src: '/logos/avas-roofing.png' },
   { name: 'Revive Restoration', src: '/logos/revive-restoration.png' },
   { name: 'Safe & Sound GPS', src: '/logos/safe-sound-gps.png', invert: true },
   { name: 'Mold Scope', src: '/logos/mold-scope.png' },

@@ -20,24 +20,17 @@ export const navItems: NavItem[] = [
   },
   { label: 'Work', to: '/work' },
   { label: 'VMS', to: '/vms' },
-  {
-    label: 'More',
-    to: '/blog',
-    children: [
-      { label: 'Blog', to: '/blog' },
-      { label: 'Testimonials', to: '/testimonials' },
-      { label: 'Partner Program', to: '/partner-program' },
-    ],
-  },
+  { label: 'Resources', to: '/blog' },
 ]
 
+// Testimonials + Partner Program live in the footer only (removed from the nav bar).
 export const footerLinks: NavLink[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Services', to: '/services' },
   { label: 'Work', to: '/work' },
   { label: 'Contact', to: '/contact' },
-  { label: 'Blog', to: '/blog' },
+  { label: 'Resources', to: '/blog' },
   { label: 'Testimonials', to: '/testimonials' },
   { label: 'Partner Program', to: '/partner-program' },
 ]

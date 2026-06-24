@@ -41,22 +41,8 @@ export default function PortfolioCard({ item, className = '', compact = false, o
           }
         : {})}
     >
-      {/* browser-window chrome — websites only */}
-      {isWebsite && (
-        <div className={`flex items-center gap-1.5 border-b border-[var(--hairline)] bg-[rgba(255,255,255,0.02)] px-3 ${compact ? 'h-6' : 'h-8'}`}>
-          <span className="h-2 w-2 rounded-full bg-[#ff5f57]/70" />
-          <span className="h-2 w-2 rounded-full bg-[#febc2e]/70" />
-          <span className="h-2 w-2 rounded-full bg-[#28c840]/70" />
-          {!compact && (
-            <span className="ml-3 truncate rounded bg-[rgba(255,255,255,0.04)] px-2 py-0.5 text-[10px] text-ink-tertiary">
-              {item.id}.com
-            </span>
-          )}
-        </div>
-      )}
-
-      {/* media / placeholder */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden">
+      {/* media / placeholder — clean 16:9 screenshot crop, no chrome */}
+      <div className="relative aspect-video w-full overflow-hidden">
         {thumb ? (
           <img
             src={thumb}

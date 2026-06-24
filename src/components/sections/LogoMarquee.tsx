@@ -20,9 +20,10 @@ function LogoCard({ name, src, invert }: ClientLogo) {
 }
 
 export default function LogoMarquee() {
-  const half = Math.ceil(clientLogos.length / 2)
-  const rowA = clientLogos.slice(0, half)
-  const rowB = clientLogos.slice(half)
+  const third = Math.ceil(clientLogos.length / 3)
+  const rowA = clientLogos.slice(0, third)
+  const rowB = clientLogos.slice(third, third * 2)
+  const rowC = clientLogos.slice(third * 2)
 
   return (
     <section id="clients" className="section-pad relative">
@@ -36,7 +37,8 @@ export default function LogoMarquee() {
 
       <div className="mt-14 flex flex-col gap-5">
         <Marquee items={rowA.map((l) => <LogoCard key={l.src} {...l} />)} duration={62} />
-        <Marquee items={rowB.map((l) => <LogoCard key={l.src} {...l} />)} duration={62} reverse />
+        <Marquee items={rowB.map((l) => <LogoCard key={l.src} {...l} />)} duration={70} reverse />
+        <Marquee items={rowC.map((l) => <LogoCard key={l.src} {...l} />)} duration={64} />
       </div>
     </section>
   )
