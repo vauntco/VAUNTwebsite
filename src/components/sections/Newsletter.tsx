@@ -1,8 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Send, CheckCircle2 } from 'lucide-react'
-
-// TODO(Jacob): set VITE_GHL_NEWSLETTER_URL to the Vaunt GHL newsletter endpoint.
-const NEWSLETTER_URL = import.meta.env.VITE_GHL_NEWSLETTER_URL as string | undefined
+import { submitLead } from '../../lib/ghl'
+import FormConsent from '../forms/FormConsent'
 
 export default function Newsletter() {
   const [done, setDone] = useState(false)
@@ -10,16 +9,10 @@ export default function Newsletter() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const email = new FormData(e.currentTarget).get('email')
+    const email = String(new FormData(e.currentTarget).get('email') ?? '')
     setBusy(true)
     try {
-      if (NEWSLETTER_URL) {
-        await fetch(NEWSLETTER_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        })
-      }
+      await submitLead({ email, formType: 'Newsletter' })
     } catch {
       /* swallow — non-critical, still acknowledge */
     } finally {
@@ -43,21 +36,26 @@ export default function Newsletter() {
               <CheckCircle2 size={20} /> You&apos;re subscribed — thanks!
             </p>
           ) : (
-            <form onSubmit={handleSubmit} className="flex w-full max-w-md flex-col gap-3 sm:flex-row">
-              <label htmlFor="nl-email" className="sr-only">Email address</label>
-              <input
-                id="nl-email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="you@company.com"
-                className="w-full rounded-full border border-[var(--glass-border)] bg-[rgba(255,255,255,0.03)] px-5 py-3 text-white placeholder-ink-tertiary outline-none transition focus:border-brand"
-              />
-              <button type="submit" disabled={busy} className="btn-cta shrink-0 disabled:opacity-60">
-                {busy ? 'Joining…' : <>Subscribe <Send size={16} /></>}
-              </button>
-            </form>
+            <>
+              <form onSubmit={handleSubmit} className="flex w-full max-w-md flex-col gap-3 sm:flex-row">
+                <label htmlFor="nl-email" className="sr-only">Email address</label>
+                <input
+                  id="nl-email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="you@company.com"
+                  className="w-full rounded-full border border-[var(--glass-border)] bg-[rgba(255,255,255,0.03)] px-5 py-3 text-white placeholder-ink-tertiary outline-none transition focus:border-brand"
+                />
+                <button type="submit" disabled={busy} className="btn-cta shrink-0 disabled:opacity-60">
+                  {busy ? 'Joining…' : <>Subscribe <Send size={16} /></>}
+                </button>
+              </form>
+              <div className="w-full max-w-md text-center">
+                <FormConsent compact />
+              </div>
+            </>
           )}
         </div>
       </div>

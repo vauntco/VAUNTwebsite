@@ -2,11 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import FormConsent from './FormConsent'
 import { trackLeadConversion } from '../../lib/analytics'
-
-// Vaunt's own GHL endpoint goes here (env var). Leave unset → form shows a
-// friendly notice instead of failing silently.
-// TODO(Jacob): set VITE_GHL_WEBHOOK_URL to the Vaunt GHL form/webhook URL.
-const GHL_WEBHOOK = import.meta.env.VITE_GHL_WEBHOOK_URL as string | undefined
+import { submitLead, ghlConfigured } from '../../lib/ghl'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -34,31 +30,23 @@ export default function ContactForm({ onPanel = false }: { onPanel?: boolean }) 
     setStatus('submitting')
     setError('')
 
-    if (!GHL_WEBHOOK) {
+    if (!ghlConfigured) {
       // No endpoint configured yet — acknowledge without losing the lead's intent.
       setTimeout(() => { setStatus('success'); trackLeadConversion() }, 600)
       return
     }
 
     try {
-      const res = await fetch(GHL_WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          payload: {
-            data: {
-              'First Name': data.firstName,
-              'Last Name': data.lastName,
-              'Email': data.email,
-              'Phone': data.phone,
-              'Company': data.company,
-              'Website': data.website,
-              'Comments': data.comments,
-            },
-          },
-        }),
+      await submitLead({
+        firstName: String(data.firstName ?? ''),
+        lastName: String(data.lastName ?? ''),
+        email: String(data.email ?? ''),
+        phone: String(data.phone ?? ''),
+        company: String(data.company ?? ''),
+        website: String(data.website ?? ''),
+        comments: String(data.comments ?? ''),
+        formType: 'Contact',
       })
-      if (!res.ok) throw new Error(`Request failed (${res.status})`)
       trackLeadConversion()
       setStatus('success')
       form.reset()
@@ -121,7 +109,7 @@ export default function ContactForm({ onPanel = false }: { onPanel?: boolean }) 
 
       <div className="sm:col-span-2">
         {/* TODO(Jacob): mount Google reCAPTCHA here with the Vaunt site key. */}
-        <FormConsent onPanel={onPanel} />
+        <FormConsent compact />
       </div>
 
       {status === 'error' && (
