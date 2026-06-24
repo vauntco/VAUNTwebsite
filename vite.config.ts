@@ -55,6 +55,10 @@ export default defineConfig({
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
   },
+  preview: {
+    // Hosts allowed to reach `vite preview` (e.g. behind the vaunt.co domain).
+    allowedHosts: ['www.vaunt.co', 'vaunt.co'],
+  },
   ssr: {
     // framer-motion ships ESM that needs bundling for the SSG render pass.
     noExternal: ['framer-motion'],
