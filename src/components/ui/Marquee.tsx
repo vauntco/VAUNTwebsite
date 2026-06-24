@@ -7,6 +7,8 @@ interface MarqueeProps {
   duration?: number
   className?: string
   itemClassName?: string
+  /** Tailwind gap class for the spacing between items. */
+  gap?: string
 }
 
 /**
@@ -20,12 +22,13 @@ export default function Marquee({
   duration = 40,
   className = '',
   itemClassName = '',
+  gap = 'gap-12',
 }: MarqueeProps) {
   const track = [...items, ...items]
   return (
     <div className={`marquee-mask group relative w-full overflow-hidden ${className}`}>
       <div
-        className={`flex w-max items-center gap-12 ${
+        className={`flex w-max items-center ${gap} ${
           reverse ? 'animate-marquee-reverse' : 'animate-marquee'
         } group-hover:[animation-play-state:paused]`}
         style={{ ['--marquee-duration' as string]: `${duration}s` }}

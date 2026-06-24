@@ -17,7 +17,7 @@ const rowB = sites.slice(half)
 
 function SiteCard({ item, onOpen }: { item: (typeof sites)[number]; onOpen: () => void }) {
   return (
-    <div className="w-[clamp(240px,72vw,340px)]">
+    <div className="w-[clamp(276px,83vw,391px)]">
       <PortfolioCard item={item} compact onOpen={onOpen} />
     </div>
   )
@@ -109,8 +109,8 @@ export default function Hero() {
           className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 bg-glow-blob opacity-50 blur-3xl"
         />
         <div className="relative space-y-4">
-          <Marquee items={rowA.map((item) => <SiteCard key={item.id} item={item} onOpen={() => setOpenItem(item)} />)} duration={55} itemClassName="px-0" />
-          <Marquee items={rowB.map((item) => <SiteCard key={item.id} item={item} onOpen={() => setOpenItem(item)} />)} reverse duration={65} itemClassName="px-0" />
+          <Marquee items={rowA.map((item) => <SiteCard key={item.id} item={item} onOpen={() => setOpenItem(item)} />)} duration={55} gap="gap-7" itemClassName="px-0" />
+          <Marquee items={rowB.map((item) => <SiteCard key={item.id} item={item} onOpen={() => setOpenItem(item)} />)} reverse duration={65} gap="gap-7" itemClassName="px-0" />
         </div>
       </motion.div>
 
