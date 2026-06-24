@@ -3,6 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-TQGK4VPH');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) — GA4 + Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Y7YMSCB43"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-0Y7YMSCB43'); // GA4 — Default Google Tag
+      gtag('config', 'AW-17056640214'); // Google Ads
+      // Conversion events fire on contact/hero form submit only (see src/lib/analytics.ts)
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#05070A" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +43,323 @@
     <!-- Title + meta are injected per-route by <Seo> at prerender time (see src/lib/Seo.tsx). -->
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-TQGK4VPH"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- LeadConnector (GHL) widget — deferred for performance -->
+    <script>
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var s = document.createElement('script');
+          s.src = 'https://beta.leadconnectorhq.com/loader.js';
+          s.defer = true;
+          document.body.appendChild(s);
+        }, 1000);
+      });
+    </script>
+
+    <!-- Structured data (schema.org) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.vaunt.co/#organization",
+            "name": "VAUNT Marketing & Design",
+            "url": "https://www.vaunt.co/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/675736a64b5d8e92ac9a4228_Artboard%201%403x%203.webp",
+              "width": 600,
+              "height": 60
+            },
+            "sameAs": [
+              "https://instagram.com/vaunt_co",
+              "https://linkedin.com/company/vauntco",
+              "https://www.vaunt.co/services#"
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+1 (248) 955-2428",
+                "contactType": "customer service",
+                "email": "INFO@VAUNT.CO",
+                "areaServed": "US",
+                "availableLanguage": ["en-US"]
+              }
+            ],
+            "founder": {
+              "@type": "Person",
+              "@id": "https://www.vaunt.co/#founder-jacob-brikho"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.vaunt.co/#founder-jacob-brikho",
+            "name": "Jacob Brikho",
+            "jobTitle": "Founder",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/6737980b6c3037005d4ed491_Mask%20group%20(24).webp"
+            },
+            "description": "A born entrepreneur, Jacob began his journey as a self-taught marketer and designer at 15. In 2018, he founded Vaunt to leverage his extensive experience in digital marketing and business growth. Having worked across diverse industries, Jacob has led teams to craft tailored omnichannel campaigns and implement strategies that deliver measurable results. Education: Lawrence Tech University (B.S. Business Administration, Marketing, Cum Laude); Draper University."
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.vaunt.co/#website",
+            "url": "https://www.vaunt.co/",
+            "name": "VAUNT Marketing & Design",
+            "publisher": { "@id": "https://www.vaunt.co/#organization" }
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://www.vaunt.co/#localbusiness",
+            "name": "VAUNT Marketing & Design - West Bloomfield",
+            "description": "Full-service digital marketing agency offering web design, branding, AI marketing, social media, photo/video, lead generation, SEO, print, reputation management, and consulting — serving Michigan.",
+            "url": "https://www.vaunt.co/",
+            "telephone": "+1 (248) 955-2428",
+            "priceRange": "$$",
+            "paymentAccepted": "Cash, Visa, MasterCard, Bank Transfer",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "5553 Victoria Dr.",
+              "addressLocality": "West Bloomfield",
+              "addressRegion": "MI",
+              "postalCode": "48322",
+              "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 42.59706551214362,
+              "longitude": -83.28607842627449
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "17:00"
+              }
+            ],
+            "image": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/674dfe030e361af25a246166_desktop.webp",
+            "logo": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/675736a64b5d8e92ac9a4228_Artboard%201%403x%203.webp",
+            "sameAs": [
+              "https://instagram.com/vaunt_co",
+              "https://linkedin.com/company/vauntco"
+            ],
+            "areaServed": { "@type": "AdministrativeArea", "name": "Michigan" },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": 5,
+              "reviewCount": 5
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.vaunt.co/#homepage",
+            "url": "https://www.vaunt.co/",
+            "name": "VAUNT Marketing & Design - Home",
+            "description": "VAUNT Marketing & Design is a West Bloomfield-based digital agency offering web design, branding, AI marketing, social media, SEO, photo/video, lead generation, print, reputation management and consulting across Michigan.",
+            "isPartOf": { "@id": "https://www.vaunt.co/#website" },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/674dfe030e361af25a246166_desktop.webp",
+              "width": 1200,
+              "height": 800
+            },
+            "mainEntity": { "@id": "https://www.vaunt.co/#localbusiness" }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.vaunt.co/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vaunt.co/"
+              }
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://www.vaunt.co/#services-list",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/web-design/#service",
+                  "name": "Web Design",
+                  "serviceType": "Website Design & Development",
+                  "description": "Stunning websites that blend form and function, enhancing user experience while reflecting your brand’s identity and driving conversions.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/web-design"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/branding/#service",
+                  "name": "Branding",
+                  "serviceType": "Brand Identity",
+                  "description": "Crafting unique brands that resonate. We develop compelling identities that connect with your audience, build trust, and set you apart in the market.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/branding"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/ai-marketing/#service",
+                  "name": "AI Marketing",
+                  "serviceType": "AI-driven Marketing",
+                  "description": "Harness AI to optimize your marketing. We use data-driven insights to target the right audience, boost engagement, and drive results.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/ai-marketing"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/social-media/#service",
+                  "name": "Social Media",
+                  "serviceType": "Social Media Strategy & Content",
+                  "description": "Boost your brand’s presence with tailored social media strategies. We create engaging content that connects, builds community, and drives growth.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/social-media"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/photo-video/#service",
+                  "name": "Photo/Video",
+                  "serviceType": "Visual Content Production",
+                  "description": "Capture your brand’s story with stunning visuals. We create high-quality photo and video content that engages and elevates your brand.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/photo-video"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/lead-generation/#service",
+                  "name": "Lead Generation",
+                  "serviceType": "Demand & Lead Generation",
+                  "description": "Drive quality leads with targeted strategies. We capture and nurture prospects, turning interest into lasting business relationships.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/lead-generation"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/seo/#service",
+                  "name": "SEO",
+                  "serviceType": "Search Engine Optimization",
+                  "description": "Rise to the top with strategic SEO. We optimize your website to increase visibility, attract the right audience, and drive sustainable growth.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/seo"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/print/#service",
+                  "name": "Print",
+                  "serviceType": "Print Design & Production",
+                  "description": "Bring your brand to life with captivating print. We design materials that reflect your identity, engage your audience, and leave a lasting impression.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/print"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/reputation-management/#service",
+                  "name": "Reputation Management",
+                  "serviceType": "Online Reputation Management",
+                  "description": "Protect and enhance your brand's image. We monitor, manage, and strengthen your online presence to build trust, credibility, and lasting loyalty.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/reputation-management"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "item": {
+                  "@type": "Service",
+                  "@id": "https://www.vaunt.co/services/consulting/#service",
+                  "name": "Consulting",
+                  "serviceType": "Marketing & Business Consulting",
+                  "description": "Empower your business with expert insights. Our consulting services provide tailored strategies to overcome challenges, seize opportunities, and achieve success.",
+                  "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "url": "https://www.vaunt.co/services/consulting"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "AggregateRating",
+            "@id": "https://www.vaunt.co/#aggregateRating",
+            "itemReviewed": { "@id": "https://www.vaunt.co/#localbusiness" },
+            "ratingValue": "5",
+            "reviewCount": "5"
+          },
+          {
+            "@type": "Review",
+            "@id": "https://www.vaunt.co/#review-emilyu",
+            "author": { "@type": "Person", "name": "EmilyU" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+            "itemReviewed": { "@id": "https://www.vaunt.co/#localbusiness" },
+            "reviewBody": "We had an incredible experience working with Vaunt! Jacob is very insightful, communicative and professional. He and his team conducted an amazing brand photoshoot for our business. Our entire team was very impressed with their professionalism and efficiency. In addition, Jacob designed some great marketing materials for our business. We highly recommend Vaunt to anyone looking for professional assistance with marketing and/or web design. Thanks again, Vaunt!!"
+          },
+          {
+            "@type": "Review",
+            "@id": "https://www.vaunt.co/#review-alyssa-reliford",
+            "author": { "@type": "Person", "name": "Alyssa Reliford" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+            "itemReviewed": { "@id": "https://www.vaunt.co/#localbusiness" },
+            "reviewBody": "Jacob and his team are the epitome of professionalism, efficiency and just flat are the BEST to work with. You will not be disappointed and even if you have a very specific vision, as I did, they are so knowledgeable to make those changes with your goal in mind. I do not write this review lightly because I am SOOOO hard to please when it comes to my business, but Vaunt have truly exceeded all my expectations. Every part of the process was seamless, exceptional communication and truly a huge blessing to have been able to work with them on building the website that really reflects my brand."
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.vaunt.co/#portfolio",
+            "name": "Our work speaks volumes, showcasing unmatched attention to detail",
+            "url": "https://www.vaunt.co/portfolio"
+          }
+        ]
+      }
+    </script>
   </body>
 </html>
