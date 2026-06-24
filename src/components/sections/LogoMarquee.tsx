@@ -1,12 +1,21 @@
 import SectionHeading from '../ui/SectionHeading'
 import Marquee from '../ui/Marquee'
-import { clientLogos } from '../../data/logos'
+import { clientLogos, type ClientLogo } from '../../data/logos'
 
-function LogoWord({ name }: { name: string }) {
+/** A client logo in a glass card — full color, except dark marks rendered white to stay visible. */
+function LogoCard({ name, src, invert }: ClientLogo) {
   return (
-    <span className="cursor-default whitespace-nowrap font-display text-lg font-semibold text-ink-tertiary/70 transition-all duration-300 hover:text-white hover:[text-shadow:0_0_18px_var(--glow-blue)]">
-      {name}
-    </span>
+    <div className="group/logo glass glow-hover flex h-[96px] w-[190px] items-center justify-center px-7">
+      <img
+        src={src}
+        alt={name}
+        loading="lazy"
+        draggable={false}
+        className={`max-h-[48px] max-w-full object-contain opacity-90 transition-opacity duration-300 group-hover/logo:opacity-100 ${
+          invert ? '[filter:brightness(0)_invert(1)]' : ''
+        }`}
+      />
+    </div>
   )
 }
 
@@ -25,9 +34,9 @@ export default function LogoMarquee() {
         />
       </div>
 
-      <div className="mt-14 flex flex-col gap-6">
-        <Marquee items={rowA.map((l) => <LogoWord key={l} name={l} />)} duration={55} />
-        <Marquee items={rowB.map((l) => <LogoWord key={l} name={l} />)} duration={55} reverse />
+      <div className="mt-14 flex flex-col gap-5">
+        <Marquee items={rowA.map((l) => <LogoCard key={l.src} {...l} />)} duration={62} />
+        <Marquee items={rowB.map((l) => <LogoCard key={l.src} {...l} />)} duration={62} reverse />
       </div>
     </section>
   )

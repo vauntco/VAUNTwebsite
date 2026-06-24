@@ -11,6 +11,7 @@ import LogoMarquee from '../components/sections/LogoMarquee'
 import GlobalReach from '../components/sections/GlobalReach'
 import TechStack from '../components/sections/TechStack'
 import BlogPreview from '../components/sections/BlogPreview'
+import InstagramFeed from '../components/sections/InstagramFeed'
 import Faq from '../components/sections/Faq'
 import ContactSection from '../components/sections/ContactSection'
 import Newsletter from '../components/sections/Newsletter'
@@ -24,13 +25,14 @@ export default function Home() {
       <Services />
       <PortfolioPreview />
       <SmartWebsites />
-      <VmsSection />
+      <VmsSection showTable={false} />
       <WhyUs />
       <Testimonials />
       <LogoMarquee />
       <GlobalReach />
       <TechStack />
       <BlogPreview />
+      <InstagramFeed />
       <Faq />
       <ContactSection />
       <Newsletter />

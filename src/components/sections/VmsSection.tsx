@@ -3,10 +3,20 @@ import SectionHeading from '../ui/SectionHeading'
 import FadeIn from '../motion/FadeIn'
 import Button from '../ui/Button'
 import GlowIcon from '../ui/GlowIcon'
+import VmsLogo from '../ui/VmsLogo'
 import { vmsBlocks, vmsRows, vmsTotals } from '../../data/vms'
 
-/** showHeading=false on the dedicated /vms page (PageHero already carries the title). */
-export default function VmsSection({ showHeading = true }: { showHeading?: boolean }) {
+/**
+ * showHeading=false on the dedicated /vms page (PageHero already carries the title).
+ * showTable=false on the homepage — the comparison table lives only on /vms.
+ */
+export default function VmsSection({
+  showHeading = true,
+  showTable = true,
+}: {
+  showHeading?: boolean
+  showTable?: boolean
+}) {
   return (
     <section id="vms" className="section-pad relative overflow-hidden">
       {/* featured glow backdrop */}
@@ -17,7 +27,7 @@ export default function VmsSection({ showHeading = true }: { showHeading?: boole
       <div className="container-v relative">
         {showHeading && (
           <SectionHeading
-            eyebrow="Vaunt Marketing System"
+            eyebrowSlot={<VmsLogo className="mb-2" />}
             title={
               <>
                 Cancel, Save, <span className="text-glow">and Organize.</span>
@@ -46,7 +56,8 @@ export default function VmsSection({ showHeading = true }: { showHeading?: boole
           ))}
         </div>
 
-        {/* Comparison table */}
+        {/* Comparison table — only on the /vms page */}
+        {showTable && (
         <FadeIn className="mt-12" delay={0.1}>
           <div className="glass glow overflow-hidden">
             <div className="border-b border-[var(--hairline)] p-6 sm:p-8">
@@ -103,6 +114,7 @@ export default function VmsSection({ showHeading = true }: { showHeading?: boole
             </div>
           </div>
         </FadeIn>
+        )}
       </div>
     </section>
   )

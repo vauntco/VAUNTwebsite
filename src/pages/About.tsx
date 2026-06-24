@@ -80,30 +80,47 @@ export default function About() {
       {/* Founder */}
       <section className="section-pad">
         <div className="container-v">
-          <FadeIn className="glass glow mx-auto max-w-4xl p-8 sm:p-12">
-            <span className="eyebrow">Founder &amp; CEO</span>
-            <h2 className="mt-4 font-display text-3xl font-bold text-white">Jacob Brikho</h2>
-            <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-secondary">
-              <p>
-                A born entrepreneur, Jacob began his journey as a self-taught marketer and designer
-                at 15. In 2018, he founded Vaunt to leverage his extensive experience in digital
-                marketing and business growth. With a background in private equity, Jacob understands
-                what drives engagement, conversions, and revenue. Having worked across diverse
-                industries, Jacob has led teams to craft tailored omnichannel campaigns, establish
-                brand standards, and implement strategies that deliver measurable results. At Vaunt,
-                the focus is on using cutting-edge marketing strategies and captivating brand design
-                to supercharge brands, helping them thrive in a competitive landscape.
-              </p>
-            </div>
-            <div className="mt-8 flex flex-col gap-3 border-t border-[var(--hairline)] pt-6 sm:flex-row sm:gap-8">
-              <p className="inline-flex items-start gap-2 text-sm text-ink-secondary">
-                <GraduationCap size={18} className="mt-0.5 shrink-0 text-brand-bright" />
-                Lawrence Tech University — B.S. in Business Administration, Marketing Major, Cum Laude
-              </p>
-              <p className="inline-flex items-start gap-2 text-sm text-ink-secondary">
-                <GraduationCap size={18} className="mt-0.5 shrink-0 text-brand-bright" />
-                Draper University — Silicon Valley Entrepreneurship Intensive Program
-              </p>
+          <FadeIn className="glass glow mx-auto max-w-5xl overflow-hidden">
+            <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
+              {/* portrait */}
+              <div className="relative min-h-[360px] sm:min-h-[460px] lg:min-h-full">
+                <img
+                  src="/about/jacob-brikho.jpg"
+                  alt="Jacob Brikho — Founder & CEO of Vaunt"
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-[rgba(5,7,10,0.5)] to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[rgba(14,18,23,0.6)]"
+                />
+              </div>
+              {/* content */}
+              <div className="p-8 sm:p-12">
+                <span className="eyebrow">Founder &amp; CEO</span>
+                <h2 className="mt-4 font-display text-3xl font-bold text-white">Jacob Brikho</h2>
+                <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-secondary">
+                  <p>
+                    A born entrepreneur, Jacob began his journey as a self-taught marketer and designer
+                    at 15. In 2018, he founded Vaunt to leverage his extensive experience in digital
+                    marketing and business growth. With a background in private equity, Jacob understands
+                    what drives engagement, conversions, and revenue. Having worked across diverse
+                    industries, Jacob has led teams to craft tailored omnichannel campaigns, establish
+                    brand standards, and implement strategies that deliver measurable results. At Vaunt,
+                    the focus is on using cutting-edge marketing strategies and captivating brand design
+                    to supercharge brands, helping them thrive in a competitive landscape.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-col gap-3 border-t border-[var(--hairline)] pt-6 sm:flex-row sm:gap-8">
+                  <p className="inline-flex items-start gap-2 text-sm text-ink-secondary">
+                    <GraduationCap size={18} className="mt-0.5 shrink-0 text-brand-bright" />
+                    Lawrence Tech University — B.S. in Business Administration, Marketing Major, Cum Laude
+                  </p>
+                  <p className="inline-flex items-start gap-2 text-sm text-ink-secondary">
+                    <GraduationCap size={18} className="mt-0.5 shrink-0 text-brand-bright" />
+                    Draper University — Silicon Valley Entrepreneurship Intensive Program
+                  </p>
+                </div>
+              </div>
             </div>
           </FadeIn>
         </div>

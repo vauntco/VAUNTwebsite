@@ -4,13 +4,15 @@ import FadeIn from '../motion/FadeIn'
 
 interface PageHeroProps {
   eyebrow?: string
+  /** Custom node rendered in place of the text eyebrow (e.g. a logo lockup). */
+  eyebrowSlot?: ReactNode
   title: ReactNode
   intro?: ReactNode
   children?: ReactNode
 }
 
 /** Consistent top-of-page header for inner pages. */
-export default function PageHero({ eyebrow, title, intro, children }: PageHeroProps) {
+export default function PageHero({ eyebrow, eyebrowSlot, title, intro, children }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden pb-10 pt-32 sm:pt-40">
       <div
@@ -19,7 +21,7 @@ export default function PageHero({ eyebrow, title, intro, children }: PageHeroPr
       />
       <div className="container-v relative text-center">
         <FadeIn className="mx-auto flex max-w-3xl flex-col items-center">
-          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {eyebrowSlot ?? (eyebrow && <Eyebrow>{eyebrow}</Eyebrow>)}
           <h1 className="text-hero mt-5 font-display font-bold uppercase italic" style={{ fontSize: 'clamp(2.4rem,6vw,4.5rem)' }}>
             {title}
           </h1>

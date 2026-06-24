@@ -62,7 +62,7 @@ export default function PortfolioCard({ item, className = '', compact = false, o
             src={thumb}
             alt={`${item.title} — ${item.note}`}
             loading="lazy"
-            className="h-full w-full object-cover object-top transition-transform duration-700 group-hover/card:scale-[1.03]"
+            className={`h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-[1.03] ${isWebsite ? 'object-top' : 'object-center'}`}
           />
         ) : (
           <div
