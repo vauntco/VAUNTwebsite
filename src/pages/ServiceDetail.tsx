@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Check, ArrowRight, ArrowLeft } from 'lucide-react'
 import Seo from '../lib/Seo'
 import PageHero from '../components/layout/PageHero'
@@ -24,6 +25,7 @@ function FeatureMedia({ feature, size = 56 }: { feature: ServiceFeature; size?: 
 }
 
 export default function ServiceDetail({ slug }: { slug: string }) {
+  const reduce = useReducedMotion()
   const service = getService(slug)
   if (!service) return null
   const related = services.filter((s) => s.slug !== slug).slice(0, 3)
@@ -74,39 +76,70 @@ export default function ServiceDetail({ slug }: { slug: string }) {
       {service.flyer ? (
         <section className="section-pad mt-12 border-y border-[var(--hairline)] bg-[var(--bg-elevated)]">
           <div className="container-v">
-            <h2 className="text-center font-display text-2xl font-bold text-white sm:text-3xl">
-              {service.featuresTitle}
-            </h2>
-            <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-              {/* framed website mockup (mirrors the flyer) */}
-              <FadeIn className="order-2 lg:order-1">
-                <div className="glass glow relative overflow-hidden p-3">
-                  <div className="mb-2 flex items-center gap-1.5 px-1">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]/70" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]/70" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]/70" />
-                  </div>
-                  <img
-                    src="/icons/website-mockup.png"
-                    alt="SMART Website mockup — Intelligence & Performance"
-                    loading="lazy"
-                    className="w-full rounded-xl"
-                  />
-                </div>
-              </FadeIn>
+            <FadeIn className="mx-auto max-w-2xl text-center">
+              <span className="eyebrow">Smart Website</span>
+              <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">{service.featuresTitle}</h2>
+              <p className="mt-4 text-ink-secondary">
+                Every piece works together to attract, convert, and grow — scroll through what&apos;s built in.
+              </p>
+            </FadeIn>
 
-              {/* feature list */}
-              <div className="order-1 space-y-2 lg:order-2">
+            <div className="mt-14 grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+              {/* sticky mockup — stays pinned while the features scroll past */}
+              <div className="lg:sticky lg:top-28">
+                <FadeIn>
+                  <div className="relative">
+                    <div aria-hidden className="pointer-events-none absolute -inset-8 -z-10 bg-glow-blob opacity-40 blur-3xl" />
+                    <div className="glass glow relative overflow-hidden p-3">
+                      <div className="mb-2 flex items-center gap-1.5 px-1">
+                        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]/70" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]/70" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]/70" />
+                      </div>
+                      <img
+                        src="/icons/website-mockup.png"
+                        alt="SMART Website mockup — Intelligence & Performance"
+                        loading="lazy"
+                        className="w-full rounded-xl"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {service.outcomes.map((o) => (
+                      <span
+                        key={o}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-[var(--glass-border)] bg-[rgba(120,180,255,0.06)] px-3 py-1.5 text-xs font-medium text-ink-secondary"
+                      >
+                        <Check size={12} className="text-brand-bright" strokeWidth={3} />
+                        {o}
+                      </span>
+                    ))}
+                  </div>
+                </FadeIn>
+              </div>
+
+              {/* scroll-reveal feature list */}
+              <div className="space-y-3">
                 {service.features.map((f, i) => (
-                  <FadeIn key={f.title} delay={i * 0.05}>
-                    <div className="glass glow-hover flex items-center gap-5 p-5">
-                      <FeatureMedia feature={f} size={156} />
+                  <motion.div
+                    key={f.title}
+                    initial={reduce ? false : { opacity: 0, x: 38 }}
+                    whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-12% 0px -12% 0px' }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: (i % 2) * 0.05 }}
+                  >
+                    <div className="group glass glow-hover relative flex items-center gap-5 overflow-hidden p-5">
+                      <span
+                        aria-hidden
+                        className="absolute inset-y-3 left-0 w-[3px] rounded-full bg-gradient-to-b from-brand-bright to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      />
+                      <FeatureMedia feature={f} size={88} />
                       <div>
                         <h3 className="font-display text-lg font-semibold text-white">{f.title}</h3>
                         <p className="mt-1 text-sm leading-relaxed text-ink-secondary">{f.desc}</p>
                       </div>
                     </div>
-                  </FadeIn>
+                  </motion.div>
                 ))}
               </div>
             </div>

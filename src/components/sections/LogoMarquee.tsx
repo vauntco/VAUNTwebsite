@@ -2,19 +2,17 @@ import SectionHeading from '../ui/SectionHeading'
 import Marquee from '../ui/Marquee'
 import { clientLogos, type ClientLogo } from '../../data/logos'
 
-/** A client logo in a glass card — full color, except dark marks rendered white to stay visible. */
-function LogoCard({ name, src, invert }: ClientLogo) {
+/** A client logo card — always full color, no filters. Dark logos get a light card so they stay visible. */
+function LogoCard({ name, src, lightCard }: ClientLogo) {
   return (
-    <div className="group/logo glass glow-hover flex h-[96px] w-[190px] items-center justify-center px-7">
-      <img
-        src={src}
-        alt={name}
-        loading="lazy"
-        draggable={false}
-        className={`max-h-[48px] max-w-full object-contain opacity-90 transition-opacity duration-300 group-hover/logo:opacity-100 ${
-          invert ? '[filter:brightness(0)_invert(1)]' : ''
-        }`}
-      />
+    <div
+      className={`group/logo glow-hover flex h-[96px] w-[190px] items-center justify-center rounded-[20px] border px-6 ${
+        lightCard
+          ? 'border-white/25 bg-white/92'
+          : 'border-[var(--glass-border)] bg-[var(--surface-glass)] backdrop-blur-md'
+      }`}
+    >
+      <img src={src} alt={name} loading="lazy" draggable={false} className="max-h-[48px] max-w-full object-contain" />
     </div>
   )
 }
