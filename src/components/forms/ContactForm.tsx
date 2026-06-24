@@ -44,7 +44,19 @@ export default function ContactForm({ onPanel = false }: { onPanel?: boolean }) 
       const res = await fetch(GHL_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          payload: {
+            data: {
+              'First Name': data.firstName,
+              'Last Name': data.lastName,
+              'Email': data.email,
+              'Phone': data.phone,
+              'Company': data.company,
+              'Website': data.website,
+              'Comments': data.comments,
+            },
+          },
+        }),
       })
       if (!res.ok) throw new Error(`Request failed (${res.status})`)
       trackLeadConversion()

@@ -26,7 +26,15 @@ export default function HeroForm() {
         await fetch(WEBHOOK, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...data, source: 'hero-quick-start' }),
+          body: JSON.stringify({
+            payload: {
+              data: {
+                'First Name': data.name,
+                'Email': data.email,
+                'Comments': `Service needed: ${data.need} | Source: hero-quick-start`,
+              },
+            },
+          }),
         })
       } catch {
         /* non-blocking — still acknowledge the lead */
@@ -98,7 +106,9 @@ export default function HeroForm() {
         </button>
       </div>
 
-      <p className="mt-4 text-xs text-ink-tertiary">No commitment · 1 business-day reply</p>
+      <div className="mt-4">
+        <FormConsent onPanel />
+      </div>
     </form>
   )
 }
