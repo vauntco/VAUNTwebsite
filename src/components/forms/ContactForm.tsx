@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
-import { site } from '../../data/site'
+import FormConsent from './FormConsent'
+import { trackLeadConversion } from '../../lib/analytics'
 
 // Vaunt's own GHL endpoint goes here (env var). Leave unset → form shows a
 // friendly notice instead of failing silently.
@@ -35,7 +36,7 @@ export default function ContactForm({ onPanel = false }: { onPanel?: boolean }) 
 
     if (!GHL_WEBHOOK) {
       // No endpoint configured yet — acknowledge without losing the lead's intent.
-      setTimeout(() => setStatus('success'), 600)
+      setTimeout(() => { setStatus('success'); trackLeadConversion() }, 600)
       return
     }
 
@@ -46,6 +47,7 @@ export default function ContactForm({ onPanel = false }: { onPanel?: boolean }) 
         body: JSON.stringify(data),
       })
       if (!res.ok) throw new Error(`Request failed (${res.status})`)
+      trackLeadConversion()
       setStatus('success')
       form.reset()
     } catch (err) {
@@ -107,15 +109,7 @@ export default function ContactForm({ onPanel = false }: { onPanel?: boolean }) 
 
       <div className="sm:col-span-2">
         {/* TODO(Jacob): mount Google reCAPTCHA here with the Vaunt site key. */}
-        <p className={`text-xs leading-relaxed ${onPanel ? 'text-white/70' : 'text-ink-tertiary'}`}>
-          By clicking &apos;SUBMIT&apos; I agree to receive marketing, transactional, and informational
-          messages from Vaunt and its partners about Digital Marketing. These messages may include
-          texts, calls, or prerecorded/artificial voice messages, sent via phone system, CRM, or ATDS.
-          I confirm that I am using the number I own and provided, and that I can unsubscribe anytime by
-          texting &apos;STOP&apos; to {site.smsStopNumber}. Message frequency may vary. This consent
-          applies even if I am on a Do Not Call list. I am at least 18 years old and have read the
-          Privacy Policy. Msg &amp; data rates may apply.
-        </p>
+        <FormConsent onPanel={onPanel} />
       </div>
 
       {status === 'error' && (

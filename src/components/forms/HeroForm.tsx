@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { ArrowRight, ChevronDown, CheckCircle2, Loader2 } from 'lucide-react'
+import FormConsent from './FormConsent'
 import { services } from '../../data/services'
+import { trackLeadConversion } from '../../lib/analytics'
 
 // Reuses the contact webhook. TODO(Jacob): set VITE_GHL_WEBHOOK_URL.
 const WEBHOOK = import.meta.env.VITE_GHL_WEBHOOK_URL as string | undefined
@@ -30,6 +32,7 @@ export default function HeroForm() {
         /* non-blocking — still acknowledge the lead */
       }
     }
+    trackLeadConversion()
     setStatus('success')
   }
 
