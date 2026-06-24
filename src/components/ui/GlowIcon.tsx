@@ -20,6 +20,7 @@ export default function GlowIcon({ name, size = 48, className = '' }: GlowIconPr
       width={size}
       height={size}
       loading="lazy"
+      decoding="async"
       draggable={false}
       className={`select-none object-contain ${className}`}
       style={{ width: size, height: size }}

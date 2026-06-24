@@ -71,12 +71,18 @@ export interface Service {
   outcomes: string[]
   /** Web Design uses the SMART-Website flyer layout. */
   flyer?: boolean
+  /** SEO overrides — else derived from name + short + locality in ServiceDetail. */
+  seoTitle?: string
+  seoDescription?: string
 }
 
 export const services: Service[] = [
   {
     slug: 'web-design',
     name: 'Web Design',
+    seoTitle: 'Web Design in West Bloomfield & Oakland County, MI',
+    seoDescription:
+      'Custom, conversion-focused web design for West Bloomfield & Oakland County, MI businesses. Fast, SEO-ready SMART Websites that turn visitors into customers — starting at $1,500.',
     short:
       "Stunning websites that blend form and function, enhancing user experience while reflecting your brand's identity and driving conversions.",
     lead:
@@ -275,6 +281,9 @@ export const services: Service[] = [
   {
     slug: 'seo',
     name: 'SEO',
+    seoTitle: 'SEO Services in West Bloomfield & Oakland County, MI',
+    seoDescription:
+      'Local SEO and search optimization for Oakland County, MI businesses. Rank higher on Google, get found by nearby customers, and grow organic leads month over month.',
     short:
       'Built to rank, fast and discoverable. We structure your site and content so the right customers find you first when they search.',
     lead:

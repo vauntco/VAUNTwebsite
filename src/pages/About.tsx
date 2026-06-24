@@ -1,4 +1,5 @@
 import Seo from '../lib/Seo'
+import { webPage, breadcrumb } from '../lib/schema'
 import PageHero from '../components/layout/PageHero'
 import SectionHeading from '../components/ui/SectionHeading'
 import FadeIn from '../components/motion/FadeIn'
@@ -13,7 +14,17 @@ export default function About() {
       <Seo
         title="About"
         path="/about"
-        description="Founded in 2018, Vaunt is a full-service, innovative agency helping businesses look better, grow faster, and market smarter. Detroit based, global reach."
+        description="Founded in 2018 in West Bloomfield, MI, Vaunt is a full-service agency helping Oakland County and Metro Detroit businesses look better, grow faster, and market smarter. Detroit based, global reach."
+        jsonLd={[
+          webPage({
+            title: 'About | VAUNT',
+            description:
+              'Founded in 2018 in West Bloomfield, MI — Vaunt helps Oakland County businesses look better, grow faster, and market smarter.',
+            path: '/about',
+            type: 'AboutPage',
+          }),
+          breadcrumb([{ name: 'About', path: '/about' }]),
+        ]}
       />
       <PageHero
         eyebrow="About Vaunt"

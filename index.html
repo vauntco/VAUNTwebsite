@@ -33,15 +33,26 @@
     </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="theme-color" content="#05070A" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts loaded non-render-blocking: fetched as a low-priority print sheet, then promoted to all. -->
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
-    <link rel="canonical" href="https://www.vaunt.co" />
-    <!-- Title + meta are injected per-route by <Seo> at prerender time (see src/lib/Seo.tsx). -->
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <!-- Title, meta, canonical, OG/Twitter and per-page JSON-LD are injected
+         per-route by <Seo> at prerender time (see src/lib/Seo.tsx). Do NOT add a
+         static canonical here — it would conflict with the per-route one. -->
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -70,7 +81,9 @@
       });
     </script>
 
-    <!-- Structured data (schema.org) -->
+    <!-- Site-wide structured data (schema.org). Page-specific nodes (WebPage,
+         BreadcrumbList, Service, BlogPosting, FAQPage) are injected per-route by
+         <Seo> and reference these entities by @id. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -79,42 +92,70 @@
             "@type": "Organization",
             "@id": "https://www.vaunt.co/#organization",
             "name": "VAUNT Marketing & Design",
+            "legalName": "Vaunt LLC",
             "url": "https://www.vaunt.co/",
+            "email": "info@vaunt.co",
+            "telephone": "+1-248-955-2428",
+            "foundingDate": "2018",
+            "slogan": "More Than An Agency.",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/675736a64b5d8e92ac9a4228_Artboard%201%403x%203.webp",
-              "width": 600,
-              "height": 60
+              "url": "https://www.vaunt.co/vaunt-wordmark-white.png",
+              "width": 760,
+              "height": 168
             },
+            "image": "https://www.vaunt.co/og-image.jpg",
             "sameAs": [
               "https://instagram.com/vaunt_co",
               "https://linkedin.com/company/vauntco",
-              "https://www.vaunt.co/services#"
+              "https://youtube.com/@vaunt_co"
+            ],
+            "knowsAbout": [
+              "Web Design",
+              "Website Development",
+              "Branding",
+              "Brand Identity",
+              "Search Engine Optimization",
+              "Local SEO",
+              "Digital Marketing",
+              "Lead Generation",
+              "Social Media Marketing",
+              "Graphic Design",
+              "Print Design",
+              "AI Marketing",
+              "Reputation Management",
+              "Marketing Consulting"
+            ],
+            "areaServed": [
+              { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
+              { "@type": "State", "name": "Michigan" }
             ],
             "contactPoint": [
               {
                 "@type": "ContactPoint",
-                "telephone": "+1 (248) 955-2428",
+                "telephone": "+1-248-955-2428",
                 "contactType": "customer service",
-                "email": "INFO@VAUNT.CO",
+                "email": "info@vaunt.co",
                 "areaServed": "US",
                 "availableLanguage": ["en-US"]
               }
             ],
-            "founder": {
-              "@type": "Person",
-              "@id": "https://www.vaunt.co/#founder-jacob-brikho"
-            }
+            "founder": { "@id": "https://www.vaunt.co/#founder-jacob-brikho" }
           },
           {
             "@type": "Person",
             "@id": "https://www.vaunt.co/#founder-jacob-brikho",
             "name": "Jacob Brikho",
             "jobTitle": "Founder",
+            "worksFor": { "@id": "https://www.vaunt.co/#organization" },
             "image": {
               "@type": "ImageObject",
-              "url": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/6737980b6c3037005d4ed491_Mask%20group%20(24).webp"
+              "url": "https://www.vaunt.co/about/jacob-brikho.jpg"
             },
+            "alumniOf": [
+              { "@type": "CollegeOrUniversity", "name": "Lawrence Technological University" },
+              { "@type": "CollegeOrUniversity", "name": "Draper University" }
+            ],
             "description": "A born entrepreneur, Jacob began his journey as a self-taught marketer and designer at 15. In 2018, he founded Vaunt to leverage his extensive experience in digital marketing and business growth. Having worked across diverse industries, Jacob has led teams to craft tailored omnichannel campaigns and implement strategies that deliver measurable results. Education: Lawrence Tech University (B.S. Business Administration, Marketing, Cum Laude); Draper University."
           },
           {
@@ -122,17 +163,23 @@
             "@id": "https://www.vaunt.co/#website",
             "url": "https://www.vaunt.co/",
             "name": "VAUNT Marketing & Design",
+            "description": "West Bloomfield web design and digital marketing agency serving Oakland County and Metro Detroit, Michigan.",
+            "inLanguage": "en-US",
             "publisher": { "@id": "https://www.vaunt.co/#organization" }
           },
           {
             "@type": "ProfessionalService",
             "@id": "https://www.vaunt.co/#localbusiness",
-            "name": "VAUNT Marketing & Design - West Bloomfield",
-            "description": "Full-service digital marketing agency offering web design, branding, AI marketing, social media, photo/video, lead generation, SEO, print, reputation management, and consulting — serving Michigan.",
+            "name": "VAUNT Marketing & Design",
+            "description": "VAUNT is a West Bloomfield, Michigan digital agency offering web design, branding, AI marketing, social media, SEO, photo/video, lead generation, print, reputation management and consulting for businesses across Oakland County and Metro Detroit.",
             "url": "https://www.vaunt.co/",
-            "telephone": "+1 (248) 955-2428",
+            "telephone": "+1-248-955-2428",
+            "email": "info@vaunt.co",
             "priceRange": "$$",
             "paymentAccepted": "Cash, Visa, MasterCard, Bank Transfer",
+            "currenciesAccepted": "USD",
+            "founder": { "@id": "https://www.vaunt.co/#founder-jacob-brikho" },
+            "parentOrganization": { "@id": "https://www.vaunt.co/#organization" },
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "5553 Victoria Dr.",
@@ -143,8 +190,8 @@
             },
             "geo": {
               "@type": "GeoCoordinates",
-              "latitude": 42.59706551214362,
-              "longitude": -83.28607842627449
+              "latitude": 42.597066,
+              "longitude": -83.286078
             },
             "openingHoursSpecification": [
               {
@@ -154,49 +201,55 @@
                 "closes": "17:00"
               }
             ],
-            "image": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/674dfe030e361af25a246166_desktop.webp",
-            "logo": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/675736a64b5d8e92ac9a4228_Artboard%201%403x%203.webp",
+            "image": "https://www.vaunt.co/og-image.jpg",
+            "logo": "https://www.vaunt.co/vaunt-wordmark-white.png",
             "sameAs": [
               "https://instagram.com/vaunt_co",
-              "https://linkedin.com/company/vauntco"
+              "https://linkedin.com/company/vauntco",
+              "https://youtube.com/@vaunt_co"
             ],
-            "areaServed": { "@type": "AdministrativeArea", "name": "Michigan" },
+            "areaServed": [
+              { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
+              { "@type": "State", "name": "Michigan" },
+              { "@type": "City", "name": "West Bloomfield, MI" },
+              { "@type": "City", "name": "Bloomfield Hills, MI" },
+              { "@type": "City", "name": "Bloomfield Township, MI" },
+              { "@type": "City", "name": "Birmingham, MI" },
+              { "@type": "City", "name": "Farmington Hills, MI" },
+              { "@type": "City", "name": "Novi, MI" },
+              { "@type": "City", "name": "Troy, MI" },
+              { "@type": "City", "name": "Royal Oak, MI" },
+              { "@type": "City", "name": "Southfield, MI" },
+              { "@type": "City", "name": "Rochester Hills, MI" },
+              { "@type": "City", "name": "Commerce Township, MI" },
+              { "@type": "City", "name": "Walled Lake, MI" },
+              { "@type": "City", "name": "Keego Harbor, MI" },
+              { "@type": "City", "name": "Orchard Lake, MI" }
+            ],
             "aggregateRating": {
               "@type": "AggregateRating",
-              "ratingValue": 5,
-              "reviewCount": 5
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://www.vaunt.co/#homepage",
-            "url": "https://www.vaunt.co/",
-            "name": "VAUNT Marketing & Design - Home",
-            "description": "VAUNT Marketing & Design is a West Bloomfield-based digital agency offering web design, branding, AI marketing, social media, SEO, photo/video, lead generation, print, reputation management and consulting across Michigan.",
-            "isPartOf": { "@id": "https://www.vaunt.co/#website" },
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://cdn.prod.website-files.com/67315318f9b4c8583f5c252c/674dfe030e361af25a246166_desktop.webp",
-              "width": 1200,
-              "height": 800
+              "ratingValue": "5",
+              "reviewCount": "5"
             },
-            "mainEntity": { "@id": "https://www.vaunt.co/#localbusiness" }
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://www.vaunt.co/#breadcrumbs",
-            "itemListElement": [
+            "review": [
               {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://www.vaunt.co/"
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "EmilyU" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "reviewBody": "We had an incredible experience working with Vaunt! Jacob is very insightful, communicative and professional. He and his team conducted an amazing brand photoshoot for our business. Our entire team was very impressed with their professionalism and efficiency. In addition, Jacob designed some great marketing materials for our business. We highly recommend Vaunt to anyone looking for professional assistance with marketing and/or web design. Thanks again, Vaunt!!"
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Alyssa Reliford" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "reviewBody": "Jacob and his team are the epitome of professionalism, efficiency and just flat are the BEST to work with. You will not be disappointed and even if you have a very specific vision, as I did, they are so knowledgeable to make those changes with your goal in mind. I do not write this review lightly because I am SOOOO hard to please when it comes to my business, but Vaunt have truly exceeded all my expectations. Every part of the process was seamless, exceptional communication and truly a huge blessing to have been able to work with them on building the website that really reflects my brand."
               }
             ]
           },
           {
             "@type": "ItemList",
             "@id": "https://www.vaunt.co/#services-list",
+            "name": "VAUNT Services",
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -208,6 +261,7 @@
                   "serviceType": "Website Design & Development",
                   "description": "Stunning websites that blend form and function, enhancing user experience while reflecting your brand’s identity and driving conversions.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/web-design"
                 }
               },
@@ -221,6 +275,7 @@
                   "serviceType": "Brand Identity",
                   "description": "Crafting unique brands that resonate. We develop compelling identities that connect with your audience, build trust, and set you apart in the market.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/branding"
                 }
               },
@@ -234,6 +289,7 @@
                   "serviceType": "AI-driven Marketing",
                   "description": "Harness AI to optimize your marketing. We use data-driven insights to target the right audience, boost engagement, and drive results.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/ai-marketing"
                 }
               },
@@ -247,6 +303,7 @@
                   "serviceType": "Social Media Strategy & Content",
                   "description": "Boost your brand’s presence with tailored social media strategies. We create engaging content that connects, builds community, and drives growth.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/social-media"
                 }
               },
@@ -260,6 +317,7 @@
                   "serviceType": "Visual Content Production",
                   "description": "Capture your brand’s story with stunning visuals. We create high-quality photo and video content that engages and elevates your brand.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/photo-video"
                 }
               },
@@ -273,6 +331,7 @@
                   "serviceType": "Demand & Lead Generation",
                   "description": "Drive quality leads with targeted strategies. We capture and nurture prospects, turning interest into lasting business relationships.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/lead-generation"
                 }
               },
@@ -286,6 +345,7 @@
                   "serviceType": "Search Engine Optimization",
                   "description": "Rise to the top with strategic SEO. We optimize your website to increase visibility, attract the right audience, and drive sustainable growth.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/seo"
                 }
               },
@@ -299,6 +359,7 @@
                   "serviceType": "Print Design & Production",
                   "description": "Bring your brand to life with captivating print. We design materials that reflect your identity, engage your audience, and leave a lasting impression.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/print"
                 }
               },
@@ -312,6 +373,7 @@
                   "serviceType": "Online Reputation Management",
                   "description": "Protect and enhance your brand's image. We monitor, manage, and strengthen your online presence to build trust, credibility, and lasting loyalty.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/reputation-management"
                 }
               },
@@ -325,39 +387,11 @@
                   "serviceType": "Marketing & Business Consulting",
                   "description": "Empower your business with expert insights. Our consulting services provide tailored strategies to overcome challenges, seize opportunities, and achieve success.",
                   "provider": { "@id": "https://www.vaunt.co/#organization" },
+                  "areaServed": { "@type": "AdministrativeArea", "name": "Oakland County, Michigan" },
                   "url": "https://www.vaunt.co/services/consulting"
                 }
               }
             ]
-          },
-          {
-            "@type": "AggregateRating",
-            "@id": "https://www.vaunt.co/#aggregateRating",
-            "itemReviewed": { "@id": "https://www.vaunt.co/#localbusiness" },
-            "ratingValue": "5",
-            "reviewCount": "5"
-          },
-          {
-            "@type": "Review",
-            "@id": "https://www.vaunt.co/#review-emilyu",
-            "author": { "@type": "Person", "name": "EmilyU" },
-            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "itemReviewed": { "@id": "https://www.vaunt.co/#localbusiness" },
-            "reviewBody": "We had an incredible experience working with Vaunt! Jacob is very insightful, communicative and professional. He and his team conducted an amazing brand photoshoot for our business. Our entire team was very impressed with their professionalism and efficiency. In addition, Jacob designed some great marketing materials for our business. We highly recommend Vaunt to anyone looking for professional assistance with marketing and/or web design. Thanks again, Vaunt!!"
-          },
-          {
-            "@type": "Review",
-            "@id": "https://www.vaunt.co/#review-alyssa-reliford",
-            "author": { "@type": "Person", "name": "Alyssa Reliford" },
-            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "itemReviewed": { "@id": "https://www.vaunt.co/#localbusiness" },
-            "reviewBody": "Jacob and his team are the epitome of professionalism, efficiency and just flat are the BEST to work with. You will not be disappointed and even if you have a very specific vision, as I did, they are so knowledgeable to make those changes with your goal in mind. I do not write this review lightly because I am SOOOO hard to please when it comes to my business, but Vaunt have truly exceeded all my expectations. Every part of the process was seamless, exceptional communication and truly a huge blessing to have been able to work with them on building the website that really reflects my brand."
-          },
-          {
-            "@type": "CollectionPage",
-            "@id": "https://www.vaunt.co/#portfolio",
-            "name": "Our work speaks volumes, showcasing unmatched attention to detail",
-            "url": "https://www.vaunt.co/portfolio"
           }
         ]
       }

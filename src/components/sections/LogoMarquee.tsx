@@ -12,7 +12,7 @@ function LogoCard({ name, src, lightCard }: ClientLogo) {
           : 'border-[var(--glass-border)] bg-[var(--surface-glass)] backdrop-blur-md'
       }`}
     >
-      <img src={src} alt={name} loading="lazy" draggable={false} className="max-h-[48px] max-w-full object-contain" />
+      <img src={src} alt={name} loading="lazy" decoding="async" draggable={false} className="max-h-[48px] max-w-full object-contain" />
     </div>
   )
 }

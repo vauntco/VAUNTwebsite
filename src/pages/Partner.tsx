@@ -1,4 +1,5 @@
 import Seo from '../lib/Seo'
+import { webPage, breadcrumb } from '../lib/schema'
 import PageHero from '../components/layout/PageHero'
 import FadeIn from '../components/motion/FadeIn'
 import Button from '../components/ui/Button'
@@ -17,6 +18,15 @@ export default function Partner() {
         title="Partner Program"
         path="/partner-program"
         description="Partner with Vaunt. Refer business, white-label our work, and grow together with a full-service marketing team behind you."
+        jsonLd={[
+          webPage({
+            title: 'Partner Program | VAUNT',
+            description:
+              'Refer business, white-label our work, and grow with a full-service marketing team behind you.',
+            path: '/partner-program',
+          }),
+          breadcrumb([{ name: 'Partner Program', path: '/partner-program' }]),
+        ]}
       />
       <PageHero
         eyebrow="Partner Program"

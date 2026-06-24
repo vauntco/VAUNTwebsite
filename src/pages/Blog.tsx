@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { CalendarDays, ArrowUpRight } from 'lucide-react'
 import Seo from '../lib/Seo'
+import { webPage, breadcrumb } from '../lib/schema'
 import PageHero from '../components/layout/PageHero'
 import FadeIn from '../components/motion/FadeIn'
 import { blogPosts } from '../data/content'
@@ -9,9 +10,19 @@ export default function Blog() {
   return (
     <>
       <Seo
-        title="Resources — Expert Tips & Insights"
+        title="Resources — Marketing & Web Design Tips"
         path="/blog"
-        description="Explore the latest marketing strategies, trends, and insights to help you stay ahead of the competition and grow your business."
+        description="Web design, SEO, and marketing strategies for Michigan small businesses. Explore the latest insights to stay ahead of the competition and grow your business."
+        jsonLd={[
+          webPage({
+            title: 'Resources — Marketing & Web Design Tips | VAUNT',
+            description:
+              'Web design, SEO, and marketing strategies for Michigan small businesses.',
+            path: '/blog',
+            type: 'CollectionPage',
+          }),
+          breadcrumb([{ name: 'Resources', path: '/blog' }]),
+        ]}
       />
       <PageHero
         eyebrow="Resources"

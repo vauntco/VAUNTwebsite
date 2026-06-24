@@ -1,4 +1,6 @@
 import Seo from '../lib/Seo'
+import { webPage, breadcrumb, faqPage } from '../lib/schema'
+import { faqs } from '../data/content'
 import Hero from '../components/sections/Hero'
 import MoreThanAgency from '../components/sections/MoreThanAgency'
 import Services from '../components/sections/Services'
@@ -19,7 +21,18 @@ import Newsletter from '../components/sections/Newsletter'
 export default function Home() {
   return (
     <>
-      <Seo />
+      <Seo
+        jsonLd={[
+          webPage({
+            title: 'Web Design & Marketing Agency in West Bloomfield, MI | VAUNT',
+            description:
+              'West Bloomfield web design and digital marketing agency serving Oakland County and Metro Detroit.',
+            path: '/',
+          }),
+          breadcrumb([]),
+          faqPage(faqs),
+        ]}
+      />
       <Hero />
       <MoreThanAgency />
       <Services />

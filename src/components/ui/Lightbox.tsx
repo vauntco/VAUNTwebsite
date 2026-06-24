@@ -86,7 +86,7 @@ function Placeholder({ item, shot }: { item: PortfolioItem; shot: Shot }) {
 
 function ShotView({ item, shot }: { item: PortfolioItem; shot: Shot }) {
   if (shot.src) {
-    return <img src={shot.src} alt={`${item.title} — ${shot.label}`} className="block w-full" />
+    return <img src={shot.src} alt={`${item.title} — ${shot.label}`} decoding="async" className="block w-full" />
   }
   return <Placeholder item={item} shot={shot} />
 }
@@ -94,7 +94,7 @@ function ShotView({ item, shot }: { item: PortfolioItem; shot: Shot }) {
 function Thumb({ item, shot }: { item: PortfolioItem; shot: Shot }) {
   return (
     <div className="aspect-[4/3] w-full overflow-hidden lg:aspect-video" style={{ background: gradient(item.hue) }}>
-      {shot.src && <img src={shot.src} alt="" className="h-full w-full object-cover object-top" />}
+      {shot.src && <img src={shot.src} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover object-top" />}
     </div>
   )
 }

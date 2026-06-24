@@ -52,6 +52,23 @@ function generateSitemap() {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        // Split heavy, rarely-changing deps into their own long-cache chunks so
+        // an app-code edit doesn't re-bust the whole vendor bundle.
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+          if (/[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|scheduler)[\\/]/.test(id))
+            return 'react-vendor'
+          if (id.includes('framer-motion') || id.includes('motion-dom') || id.includes('motion-utils'))
+            return 'framer'
+          if (id.includes('lucide-react') || id.includes('simple-icons')) return 'icons'
+          return 'vendor'
+        },
+      },
+    },
+  },
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
   },

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Check, ArrowRight, ArrowLeft } from 'lucide-react'
 import Seo from '../lib/Seo'
+import { serviceSchema, breadcrumb, webPage } from '../lib/schema'
 import PageHero from '../components/layout/PageHero'
 import FadeIn from '../components/motion/FadeIn'
 import Button from '../components/ui/Button'
@@ -31,9 +32,34 @@ export default function ServiceDetail({ slug }: { slug: string }) {
   const related = services.filter((s) => s.slug !== slug).slice(0, 3)
   const channelsAsCards = service.channels?.items.some((i) => i.desc)
 
+  const seoTitle = service.seoTitle ?? `${service.name} in West Bloomfield, MI`
+  const seoDescription =
+    service.seoDescription ??
+    `${service.short} Serving West Bloomfield, Oakland County & Metro Detroit, MI.`
+
   return (
     <>
-      <Seo title={service.name} path={`/services/${service.slug}`} description={service.short} />
+      <Seo
+        title={seoTitle}
+        path={`/services/${service.slug}`}
+        description={seoDescription}
+        jsonLd={[
+          serviceSchema({
+            name: service.name,
+            slug: service.slug,
+            description: service.short,
+          }),
+          webPage({
+            title: `${seoTitle} | VAUNT`,
+            description: seoDescription,
+            path: `/services/${service.slug}`,
+          }),
+          breadcrumb([
+            { name: 'Services', path: '/services' },
+            { name: service.name, path: `/services/${service.slug}` },
+          ]),
+        ]}
+      />
       <PageHero eyebrow="Service" title={service.name} intro={service.lead}>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button to="/contact">

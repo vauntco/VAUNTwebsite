@@ -25,6 +25,7 @@ export default function BlogPreview() {
                     src={post.cover}
                     alt={post.title}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                 </div>

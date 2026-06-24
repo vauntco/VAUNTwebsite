@@ -1,4 +1,5 @@
 import Seo from '../lib/Seo'
+import { webPage, breadcrumb } from '../lib/schema'
 import PageHero from '../components/layout/PageHero'
 import { site } from '../data/site'
 import {
@@ -13,7 +14,15 @@ import {
 export function Terms() {
   return (
     <>
-      <Seo title="Terms & Conditions" path="/terms" description="Vaunt LLC Terms & Conditions." />
+      <Seo
+        title="Terms & Conditions"
+        path="/terms"
+        description="Vaunt LLC Terms & Conditions."
+        jsonLd={[
+          webPage({ title: 'Terms & Conditions | VAUNT', description: 'Vaunt LLC Terms & Conditions.', path: '/terms' }),
+          breadcrumb([{ name: 'Terms & Conditions', path: '/terms' }]),
+        ]}
+      />
       <PageHero eyebrow="Legal" title="Terms & Conditions" />
       <LegalBody>
         <p className="text-sm text-ink-tertiary">Last updated: {termsUpdated}</p>
@@ -34,7 +43,15 @@ export function Terms() {
 export function Privacy() {
   return (
     <>
-      <Seo title="Privacy Policy" path="/privacy" description="Vaunt LLC Privacy Policy." />
+      <Seo
+        title="Privacy Policy"
+        path="/privacy"
+        description="Vaunt LLC Privacy Policy."
+        jsonLd={[
+          webPage({ title: 'Privacy Policy | VAUNT', description: 'Vaunt LLC Privacy Policy.', path: '/privacy' }),
+          breadcrumb([{ name: 'Privacy Policy', path: '/privacy' }]),
+        ]}
+      />
       <PageHero eyebrow="Legal" title="Privacy Policy" />
       <LegalBody>
         <p className="text-sm text-ink-tertiary">Last updated: {termsUpdated}</p>

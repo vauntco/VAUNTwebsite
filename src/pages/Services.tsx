@@ -1,4 +1,5 @@
 import Seo from '../lib/Seo'
+import { webPage, breadcrumb } from '../lib/schema'
 import PageHero from '../components/layout/PageHero'
 import Services from '../components/sections/Services'
 import VmsSection from '../components/sections/VmsSection'
@@ -8,9 +9,19 @@ export default function ServicesPage() {
   return (
     <>
       <Seo
-        title="Services"
+        title="Marketing & Web Design Services in Oakland County, MI"
         path="/services"
-        description="Full-service marketing: web design, branding, AI marketing, social media, photo/video, lead generation, SEO, print, reputation management, and consulting."
+        description="Full-service marketing in West Bloomfield & Oakland County, MI: web design, branding, AI marketing, social media, photo/video, lead generation, SEO, print, reputation management and consulting."
+        jsonLd={[
+          webPage({
+            title: 'Marketing & Web Design Services in Oakland County, MI | VAUNT',
+            description:
+              'Full-service marketing in West Bloomfield & Oakland County, MI: web design, branding, SEO, lead generation and more.',
+            path: '/services',
+            type: 'CollectionPage',
+          }),
+          breadcrumb([{ name: 'Services', path: '/services' }]),
+        ]}
       />
       <PageHero
         eyebrow="Services"

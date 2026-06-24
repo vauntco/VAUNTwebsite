@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { CalendarDays, Clock, ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import Seo from '../lib/Seo'
+import { blogPostingSchema, breadcrumb } from '../lib/schema'
 import FadeIn from '../components/motion/FadeIn'
 import Button from '../components/ui/Button'
 import ContactSection from '../components/sections/ContactSection'
@@ -14,10 +15,29 @@ export default function BlogPost({ slug }: { slug: string }) {
   const post = getPost(slug)
   if (!post) return null
   const more = blogPosts.filter((p) => p.slug !== slug).slice(0, 3)
+  const published = (() => {
+    const d = new Date(post.date)
+    return Number.isNaN(d.getTime()) ? undefined : d.toISOString()
+  })()
 
   return (
     <>
-      <Seo title={post.title} path={`/blog/${post.slug}`} description={post.excerpt} />
+      <Seo
+        title={post.title}
+        path={`/blog/${post.slug}`}
+        description={post.excerpt}
+        ogType="article"
+        ogImage={`https://www.vaunt.co${post.cover}`}
+        ogImageAlt={post.title}
+        article={{ published, modified: published, author: post.author }}
+        jsonLd={[
+          blogPostingSchema(post),
+          breadcrumb([
+            { name: 'Resources', path: '/blog' },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
 
       <article className="relative overflow-hidden pb-4 pt-32 sm:pt-36">
         <div
