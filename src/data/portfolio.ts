@@ -3,7 +3,7 @@
 // links — Spec §5/§10). Drop real screenshots into /public/portfolio/<id>/ and
 // fill `gallery` to swap placeholders for real media.
 
-export type PortfolioCategory = 'Websites' | 'Branding' | 'Print'
+export type PortfolioCategory = 'Websites' | 'Branding' | 'Print' | 'Social'
 
 export interface PortfolioGallery {
   /** The long, full-page homepage screenshot (scrolls in the lightbox). */
@@ -49,9 +49,9 @@ export const portfolioItems: PortfolioItem[] = [
   { id: 'gregdavis', title: 'Greg Davis Landscapes', category: 'Websites', note: 'Your Vision, Our Expertise', blurb: 'Portfolio-led site for a landscape design studio.', tags: ['Website', 'Landscaping'], hue: 110, featured: false, thumbnail: '/portfolio/gregdavis/thumb.jpg', gallery: { hero: '/portfolio/gregdavis/full.jpg' } },
   { id: 'maples', title: 'Maples Bar & Bistro', category: 'Websites', note: 'Neighborhood bar & bistro', blurb: 'Atmosphere-forward site with menu, story, and reservations.', tags: ['Website', 'Restaurant'], hue: 28, featured: false, thumbnail: '/portfolio/maples/thumb.jpg', gallery: { hero: '/portfolio/maples/full.jpg' } },
   { id: 'saltandlight', title: 'Salt & Light Child Care', category: 'Websites', note: 'Where Little Ones Feel Right at Home', blurb: 'Warm, welcoming site for a family child-care center.', tags: ['Website', 'Education'], hue: 44, featured: false, thumbnail: '/portfolio/saltandlight/thumb.jpg', gallery: { hero: '/portfolio/saltandlight/full.jpg' } },
-  { id: 'tagbuddy', title: 'TagBuddy', category: 'Websites', note: "Assistive product — \"I'm Lia\"", blurb: 'Product site for an assistive device that keeps people connected.', tags: ['Website', 'Product'], hue: 286, featured: false },
-  { id: 'lonero', title: 'Lonero', category: 'Branding', note: 'Technology brand', blurb: 'Brand identity system for a technology company.', tags: ['Branding', 'Tech'], hue: 240, featured: false },
-  { id: 'reaperpacks', title: 'DCG Sports / Reaper Packs', category: 'Branding', note: 'Esports / gaming', blurb: 'Bold identity for an esports and gaming label.', tags: ['Branding', 'Gaming'], hue: 348, featured: false },
+  { id: 'tagbuddy', title: 'TagBuddy', category: 'Websites', note: "Assistive product — \"I'm Lia\"", blurb: 'Product site for an assistive device that keeps people connected.', tags: ['Website', 'Product'], hue: 286, featured: false, thumbnail: '/portfolio/tagbuddy/thumb.jpg', gallery: { hero: '/portfolio/tagbuddy/full.jpg' } },
+  { id: 'lonero', title: 'Lonero', category: 'Branding', note: 'Crypto brand identity', blurb: 'Brand identity and launch graphics for a cryptocurrency project.', tags: ['Branding', 'Crypto'], hue: 200, featured: false, thumbnail: '/portfolio/lonero/thumb.jpg', gallery: { hero: '/portfolio/lonero/full.jpg' } },
+  { id: 'reaperpacks', title: 'DCR Sports / Reaper Packs', category: 'Branding', note: 'Esports / gaming', blurb: 'A bold mascot-logo system for an esports label and its family of teams.', tags: ['Branding', 'Gaming'], hue: 268, featured: false, thumbnail: '/portfolio/reaperpacks/logos.jpg', gallery: { hero: '/portfolio/reaperpacks/logo.png', shots: ['/portfolio/reaperpacks/logos.jpg'] } },
   { id: 'morty-mintz', title: 'Morty Mintz', category: 'Print', note: 'Product packaging', blurb: 'Bold, character-driven mylar packaging for a novelty snack brand.', tags: ['Packaging', 'Print'], hue: 132, featured: false, gallery: { hero: '/portfolio/morty-mintz/bag.jpg' } },
   { id: 'chameleon', title: 'Chameleon', category: 'Print', note: 'Product packaging', blurb: 'Premium packaging with custom illustration and hand-drawn lettering.', tags: ['Packaging', 'Print'], hue: 162, featured: false, gallery: { hero: '/portfolio/chameleon/bag.jpg' } },
   { id: 'moldscope', title: 'Mold Scope Testing', category: 'Print', note: 'Apparel & collateral', blurb: 'A full branded system — custom apparel, a retractable banner, and a direct-mail postcard for a mold-testing service.', tags: ['Apparel', 'Print'], hue: 190, featured: false, gallery: { hero: '/portfolio/moldscope/apparel.jpg', shots: ['/portfolio/moldscope/postcard.jpg', '/portfolio/moldscope/banner.jpg'] } },
@@ -62,6 +62,11 @@ export const portfolioItems: PortfolioItem[] = [
   { id: 'execlangser-print', title: 'Executive Language Services', category: 'Print', note: 'Cards & banner', blurb: 'Business cards and a trade-show banner for a language services firm.', tags: ['Business Cards', 'Print'], hue: 214, featured: false, gallery: { hero: '/portfolio/execlangser-print/cards.jpg', shots: ['/portfolio/execlangser-print/banner.jpg'] } },
   { id: 'ayar-roofing', title: 'Ayar Roofing', category: 'Print', note: 'Business cards', blurb: 'Clean, professional business cards for a roofing contractor.', tags: ['Business Cards', 'Print'], hue: 30, featured: false, gallery: { hero: '/portfolio/avas-roofing/cards.jpg' } },
   { id: 'revive-restoration', title: 'Revive Restoration', category: 'Print', note: 'Recruitment flyer', blurb: 'A bilingual “join the team” recruitment flyer for a restoration company.', tags: ['Flyer', 'Print'], hue: 198, featured: false, gallery: { hero: '/portfolio/revive-restoration/flyer.jpg' } },
+  { id: 'execlangser-social', title: 'Executive Language Services', category: 'Social', note: 'Social media campaign', blurb: 'Scroll-stopping social posts — service highlights, holidays, and brand moments for a language-services firm.', tags: ['Social Media', 'Translation'], hue: 212, featured: false, gallery: { hero: '/portfolio/execlangser-social/01.jpg', shots: ['/portfolio/execlangser-social/02.jpg', '/portfolio/execlangser-social/03.jpg', '/portfolio/execlangser-social/04.jpg', '/portfolio/execlangser-social/05.jpg', '/portfolio/execlangser-social/06.jpg', '/portfolio/execlangser-social/07.jpg', '/portfolio/execlangser-social/08.jpg', '/portfolio/execlangser-social/09.jpg', '/portfolio/execlangser-social/10.jpg', '/portfolio/execlangser-social/11.jpg', '/portfolio/execlangser-social/12.jpg', '/portfolio/execlangser-social/13.jpg', '/portfolio/execlangser-social/14.jpg', '/portfolio/execlangser-social/15.jpg'] } },
+  { id: 'jonnas-social', title: "Jonna's Market", category: 'Social', note: 'Social media campaign', blurb: 'Game-day, holiday, and promo graphics built to drive foot traffic for a neighborhood market.', tags: ['Social Media', 'Retail'], hue: 22, featured: false, gallery: { hero: '/portfolio/jonnas-social/01.jpg', shots: ['/portfolio/jonnas-social/02.jpg', '/portfolio/jonnas-social/03.jpg', '/portfolio/jonnas-social/04.jpg', '/portfolio/jonnas-social/05.jpg', '/portfolio/jonnas-social/06.jpg', '/portfolio/jonnas-social/07.jpg', '/portfolio/jonnas-social/08.jpg', '/portfolio/jonnas-social/09.jpg', '/portfolio/jonnas-social/10.jpg', '/portfolio/jonnas-social/11.jpg'] } },
+  { id: 'sporeshield-social', title: 'Spore Shield', category: 'Social', note: 'Social media campaign', blurb: 'Bold, attention-grabbing mold-awareness posts for a certified mold-testing service.', tags: ['Social Media', 'Home Services'], hue: 140, featured: false, gallery: { hero: '/portfolio/sporeshield-social/01.jpg', shots: ['/portfolio/sporeshield-social/02.jpg', '/portfolio/sporeshield-social/03.jpg'] } },
+  { id: 'revive-social', title: 'Revive Restoration', category: 'Social', note: 'Social media campaign', blurb: 'Urgent, conversion-focused posts for a 24/7 disaster-restoration company.', tags: ['Social Media', 'Restoration'], hue: 198, featured: false, gallery: { hero: '/portfolio/revive-social/01.jpg', shots: ['/portfolio/revive-social/02.jpg'] } },
+  { id: 'matthews-auto-social', title: "Matthew's Stop & Look Auto Sales", category: 'Social', note: 'Social media flyer', blurb: 'A high-energy “we say yes” promo built to move inventory for an auto dealer.', tags: ['Social Media', 'Automotive'], hue: 6, featured: false, gallery: { hero: '/portfolio/matthews-auto-social/01.jpg' } },
 ]
 
 /*
@@ -72,6 +77,6 @@ export const portfolioItems: PortfolioItem[] = [
   }
 */
 
-export const portfolioFilters: ('All' | PortfolioCategory)[] = ['All', 'Websites', 'Branding', 'Print']
+export const portfolioFilters: ('All' | PortfolioCategory)[] = ['All', 'Websites', 'Branding', 'Print', 'Social']
 
 export const featuredItems = portfolioItems.filter((i) => i.featured)
