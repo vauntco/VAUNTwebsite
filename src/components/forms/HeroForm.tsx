@@ -3,9 +3,7 @@ import { ArrowRight, ChevronDown, CheckCircle2, Loader2 } from 'lucide-react'
 import FormConsent from './FormConsent'
 import { services } from '../../data/services'
 import { trackLeadConversion } from '../../lib/analytics'
-
-// Reuses the contact webhook. TODO(Jacob): set VITE_GHL_WEBHOOK_URL.
-const WEBHOOK = import.meta.env.VITE_GHL_WEBHOOK_URL as string | undefined
+import { submitLead } from '../../lib/ghl'
 
 // Mirror the live service list, plus catch-alls for VMS and undecided visitors.
 const NEEDS = [...services.map((s) => s.name), 'CRM / VMS', 'Not sure yet']
@@ -21,24 +19,15 @@ export default function HeroForm() {
     const form = e.currentTarget
     const data = Object.fromEntries(new FormData(form).entries())
     setStatus('submitting')
-    if (WEBHOOK) {
-      try {
-        await fetch(WEBHOOK, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            payload: {
-              data: {
-                'First Name': data.name,
-                'Email': data.email,
-                'Comments': `Service needed: ${data.need} | Source: hero-quick-start`,
-              },
-            },
-          }),
-        })
-      } catch {
-        /* non-blocking — still acknowledge the lead */
-      }
+    try {
+      await submitLead({
+        firstName: String(data.name ?? ''),
+        email: String(data.email ?? ''),
+        comments: `Service needed: ${data.need}`,
+        formType: 'Hero Inquiry',
+      })
+    } catch {
+      /* non-blocking — still acknowledge the lead */
     }
     trackLeadConversion()
     setStatus('success')
@@ -106,8 +95,8 @@ export default function HeroForm() {
         </button>
       </div>
 
-      <div className="mt-4">
-        <FormConsent onPanel />
+      <div className="mt-3">
+        <FormConsent compact />
       </div>
     </form>
   )

@@ -1,8 +1,26 @@
 import { Link } from 'react-router-dom'
 import { site } from '../../data/site'
 
-/** Tiny TCPA/messaging consent shown under lead-form submit buttons. */
-export default function FormConsent({ onPanel = false }: { onPanel?: boolean }) {
+interface FormConsentProps {
+  onPanel?: boolean
+  /** Single-line micro variant for compact forms (e.g. hero). */
+  compact?: boolean
+}
+
+/** TCPA/messaging consent shown under lead-form submit buttons. */
+export default function FormConsent({ onPanel = false, compact = false }: FormConsentProps) {
+  if (compact) {
+    return (
+      <p className="text-[10px] font-light leading-relaxed text-white/30">
+        By submitting you consent to receive communications from Vaunt. Msg &amp; data rates may
+        apply. Reply STOP to opt out.{' '}
+        <Link to="/privacy" className="underline transition-colors hover:text-white/50">
+          Privacy Policy
+        </Link>
+      </p>
+    )
+  }
+
   return (
     <p className={`text-xs leading-relaxed ${onPanel ? 'text-white/70' : 'text-ink-tertiary'}`}>
       By clicking &lsquo;SUBMIT&rsquo; I agree to receive marketing, transactional, and informational
