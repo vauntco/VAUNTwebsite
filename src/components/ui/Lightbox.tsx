@@ -163,7 +163,7 @@ export default function Lightbox({ item, onClose }: { item: PortfolioItem | null
 
             {/* thumbnail rail */}
             <div className="flex shrink-0 gap-3 overflow-x-auto border-t border-[var(--hairline)] bg-[var(--bg-elevated)] p-3 lg:w-48 lg:flex-col lg:overflow-y-auto lg:overflow-x-hidden lg:border-l lg:border-t-0 lg:p-4">
-              <div className="hidden lg:mb-1 lg:block">
+              <div className="hidden lg:mb-1 lg:block lg:pr-11">
                 <h3 className="font-display text-base font-semibold leading-tight text-white">{item.title}</h3>
                 <p className="mt-1 text-xs text-ink-secondary">{item.note}</p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
