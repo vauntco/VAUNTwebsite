@@ -102,10 +102,7 @@ export default function VmsSection({
               <div>
                 <p className="text-sm text-ink-secondary">Total replaced value</p>
                 <p className="font-display text-2xl font-bold text-white">
-                  {vmsTotals.monthly}{' '}
-                  <span className="text-base font-medium text-ink-secondary">
-                    + a {vmsTotals.app} branded app
-                  </span>
+                  {vmsTotals.monthly}
                 </p>
               </div>
               <Button to="/contact">

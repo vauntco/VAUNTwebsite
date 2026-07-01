@@ -63,11 +63,9 @@ export const vmsRows: VmsRow[] = [
   { feature: 'Communities', replaces: 'Skool, Circle', savings: '$89/mo' },
   { feature: 'Document Signing', replaces: 'PandaDoc, DocuSign', savings: '$47/mo' },
   { feature: 'Payment Processing & Invoicing', replaces: 'Stripe standalone, QuickBooks Payments, Square', savings: '$79/mo + fees' },
-  { feature: 'Branded Mobile App', replaces: 'Unique to VMS', savings: '$5k+' },
 ]
 
 export const vmsTotals = {
   monthly: '$1,690+/mo',
-  app: '$5k+',
-  summary: 'Total replaced value ≈ $1,690+/mo plus a $5k+ branded app.',
+  summary: 'Total replaced value ≈ $1,690+/mo.',
 }
