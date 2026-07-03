@@ -48,6 +48,10 @@ function generateSitemap() {
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), xml)
   // eslint-disable-next-line no-console
   console.log(`[sitemap] wrote ${urls.length} urls -> dist/sitemap.xml`)
+
+  // serve-handler renders /404.html for unknown paths; mirror the nested SSG page.
+  const notFound = path.join(distDir, '404', 'index.html')
+  if (fs.existsSync(notFound)) fs.copyFileSync(notFound, path.join(distDir, '404.html'))
 }
 
 // https://vitejs.dev/config/
