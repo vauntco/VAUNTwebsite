@@ -106,6 +106,9 @@ export default function BlogPost({ slug }: { slug: string }) {
               <Button to="/work" variant="ghost">
                 See Our Work
               </Button>
+              <Button to="/web-design-michigan" variant="ghost">
+                Website Design in Michigan
+              </Button>
             </div>
           </div>
 

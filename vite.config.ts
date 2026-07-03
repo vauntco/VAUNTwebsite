@@ -21,8 +21,8 @@ function generateSitemap() {
         route = route.replace(/\/index\.html$/, '').replace(/\.html$/, '')
         if (route === '') route = '/'
         if (route === '/404') continue
-        if (route === '/portfolio') continue // redirect to /work
-        if (route === '/showcase') continue // legacy redirect to /work
+        // Skip prerendered redirect stubs (meta-refresh pages) — they aren't canonical content.
+        if (fs.readFileSync(full, 'utf8').includes('http-equiv="refresh"')) continue
         if (!urls.includes(route)) urls.push(route)
       }
     }

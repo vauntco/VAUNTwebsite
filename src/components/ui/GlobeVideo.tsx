@@ -17,6 +17,9 @@ export default function GlobeVideo() {
 
   useEffect(() => {
     if (reduce) return
+    // Respect metered/slow connections — the globe is decorative, not worth 13 MB.
+    const conn = (navigator as { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+    if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType ?? ''))) return
     const ric = window.requestIdleCallback
     let idleId: number | undefined
     let timer: number | undefined

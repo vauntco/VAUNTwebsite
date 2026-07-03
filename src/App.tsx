@@ -44,6 +44,10 @@ export const routes: RouteRecord[] = [
       { path: 'web-design-michigan', element: <WebDesignMichigan /> },
       // Dead Webflow-era URLs (GSC "crawled – not indexed" backlog) → live pages.
       { path: 'showcase', element: <LegacyRedirect to="/work" title="Work | VAUNT" /> },
+      { path: 'privacy-policy', element: <LegacyRedirect to="/privacy" title="Privacy Policy | VAUNT" /> },
+      { path: 'book', element: <LegacyRedirect to="/contact" title="Contact | VAUNT" /> },
+      { path: 'launch', element: <LegacyRedirect to="/" title="VAUNT" /> },
+      { path: 'services/services', element: <LegacyRedirect to="/services" title="Services | VAUNT" /> },
       { path: 'portfolio/*', element: <LegacyRedirect to="/work" title="Work | VAUNT" /> },
       { path: 'post/*', element: <LegacyRedirect to="/blog" title="Resources | VAUNT" /> },
       { path: 'author/*', element: <LegacyRedirect to="/about" title="About | VAUNT" /> },

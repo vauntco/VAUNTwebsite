@@ -18,9 +18,9 @@ import { portfolioItems, type PortfolioItem } from '../data/portfolio'
 
 const PATH = '/web-design-michigan'
 
-const SEO_TITLE = 'Website Design in Michigan — Custom Websites by VAUNT'
+const SEO_TITLE = 'Website Design & Web Designers in Michigan | VAUNT'
 const SEO_DESCRIPTION =
-  'Michigan website design agency building fast, SEO-ready custom websites that turn visitors into customers. Based in West Bloomfield, serving Metro Detroit and all of Michigan. Sites from $1,500.'
+  'Michigan web designers building fast, SEO-ready custom websites that turn visitors into customers. Website design agency in West Bloomfield serving Metro Detroit and all of Michigan. Sites from $1,500.'
 
 // Michigan-flavored client work shown on this page (all real Michigan projects).
 const FEATURED_IDS = [
@@ -82,6 +82,10 @@ const michiganFaqs = [
     q: 'Can you redesign my existing Michigan business website?',
     a: 'We prefer to rebuild from scratch because it produces the best result, but we take on redesign and editing projects at our discretion. Reach out and we will assess your current site honestly.',
   },
+  {
+    q: 'How do I choose a web designer in Michigan?',
+    a: 'Look at three things: real portfolio work (not templates), reviews from businesses like yours, and whether they handle everything — strategy, copy, design, development, and SEO — or hand you off between vendors. Ask what happens after launch, too: a good Michigan web designer supports the site and can run the marketing behind it.',
+  },
 ]
 
 export default function WebDesignMichigan() {
@@ -124,9 +128,9 @@ export default function WebDesignMichigan() {
         }
         intro={
           <>
-            Custom, conversion-focused websites for Michigan businesses — designed in West
-            Bloomfield, launched statewide. Fast, SEO-ready, and built to turn visitors into
-            customers, starting at $1,500.
+            Custom, conversion-focused websites for Michigan businesses — designed by Michigan web
+            designers in West Bloomfield, launched statewide. Fast, SEO-ready, and built to turn
+            visitors into customers, starting at $1,500.
           </>
         }
       >
@@ -171,10 +175,10 @@ export default function WebDesignMichigan() {
           <FadeIn className="mx-auto mt-10 max-w-3xl space-y-5 text-base leading-relaxed text-ink-secondary">
             <p>
               Vaunt is a Michigan website design and marketing agency headquartered in West
-              Bloomfield, in the heart of Oakland County. Since {site.founded} we&apos;ve designed,
-              written, and built websites for Michigan businesses of every kind — roofers and
-              restoration companies, law firms and language schools, manufacturers, logistics
-              companies, auto shops, salons, and startups.
+              Bloomfield, in the heart of Oakland County. Since {site.founded} our web designers
+              have planned, written, and built websites for Michigan businesses of every kind —
+              roofers and restoration companies, law firms and language schools, manufacturers,
+              logistics companies, auto shops, salons, and startups.
             </p>
             <p>
               We don&apos;t sell templates. Every project is a custom{' '}

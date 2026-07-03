@@ -5,7 +5,10 @@
     { "source": "/post/**", "destination": "/blog/index.html" },
     { "source": "/author/**", "destination": "/about/index.html" },
     { "source": "/portfolio/**", "destination": "/work/index.html" },
-    { "source": "/testimonials/**", "destination": "/testimonials/index.html" }
+    { "source": "/testimonials/**", "destination": "/testimonials/index.html" },
+    { "source": "/potfolio-categories/**", "destination": "/work/index.html" },
+    { "source": "/portfolio-categories/**", "destination": "/work/index.html" },
+    { "source": "/categories/**", "destination": "/work/index.html" }
   ],
   "headers": [
     {
