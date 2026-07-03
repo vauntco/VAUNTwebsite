@@ -3,6 +3,7 @@ import { webPage, breadcrumb } from '../lib/schema'
 import PageHero from '../components/layout/PageHero'
 import VmsLogo from '../components/ui/VmsLogo'
 import VmsSection from '../components/sections/VmsSection'
+import VmsShowcase from '../components/sections/VmsShowcase'
 import SmartWebsites from '../components/sections/SmartWebsites'
 import ContactSection from '../components/sections/ContactSection'
 
@@ -29,6 +30,7 @@ export default function Vms() {
         intro="One system that replaces your entire stack of marketing tools — and the team to run it."
       />
       <VmsSection showHeading={false} />
+      <VmsShowcase />
       <SmartWebsites />
       <ContactSection />
     </>
