@@ -14,6 +14,8 @@ import Partner from './pages/Partner'
 import Contact from './pages/Contact'
 import { Terms, Privacy } from './pages/Legal'
 import NotFound from './pages/NotFound'
+import WebDesignMichigan from './pages/WebDesignMichigan'
+import LegacyRedirect from './pages/LegacyRedirect'
 import { services } from './data/services'
 import { blogPosts } from './data/content'
 
@@ -39,6 +41,13 @@ export const routes: RouteRecord[] = [
       { path: 'services', element: <ServicesPage /> },
       ...serviceRoutes,
       { path: 'portfolio', element: <Portfolio /> },
+      { path: 'web-design-michigan', element: <WebDesignMichigan /> },
+      // Dead Webflow-era URLs (GSC "crawled – not indexed" backlog) → live pages.
+      { path: 'showcase', element: <LegacyRedirect to="/work" title="Work | VAUNT" /> },
+      { path: 'portfolio/*', element: <LegacyRedirect to="/work" title="Work | VAUNT" /> },
+      { path: 'post/*', element: <LegacyRedirect to="/blog" title="Resources | VAUNT" /> },
+      { path: 'author/*', element: <LegacyRedirect to="/about" title="About | VAUNT" /> },
+      { path: 'testimonials/*', element: <LegacyRedirect to="/testimonials" title="Testimonials | VAUNT" /> },
       { path: 'vms', element: <Vms /> },
       { path: 'blog', element: <Blog /> },
       ...blogRoutes,

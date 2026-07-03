@@ -28,6 +28,7 @@ export const footerLinks: NavLink[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Services', to: '/services' },
+  { label: 'Website Design Michigan', to: '/web-design-michigan' },
   { label: 'Work', to: '/work' },
   { label: 'Contact', to: '/contact' },
   { label: 'Resources', to: '/blog' },

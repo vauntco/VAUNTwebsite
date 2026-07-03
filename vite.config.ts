@@ -22,6 +22,7 @@ function generateSitemap() {
         if (route === '') route = '/'
         if (route === '/404') continue
         if (route === '/portfolio') continue // redirect to /work
+        if (route === '/showcase') continue // legacy redirect to /work
         if (!urls.includes(route)) urls.push(route)
       }
     }
@@ -71,6 +72,10 @@ export default defineConfig({
   },
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
+  },
+  server: {
+    // Honor a harness/host-assigned port (e.g. Claude preview) when present.
+    port: process.env.PORT ? Number(process.env.PORT) : 5173,
   },
   preview: {
     // Hosts allowed to reach `vite preview` (e.g. behind the vaunt.co domain).

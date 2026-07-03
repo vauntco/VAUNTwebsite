@@ -59,10 +59,10 @@ export const site = {
     youtube: 'https://youtube.com/@vaunt_co',
   },
   seo: {
-    defaultTitle: 'Web Design & Marketing Agency in West Bloomfield, MI | VAUNT',
+    defaultTitle: 'Michigan Web Design & Marketing Agency in West Bloomfield | VAUNT',
     titleTemplate: '%s | VAUNT',
     description:
-      'VAUNT is a West Bloomfield web design & digital marketing agency serving Oakland County and Metro Detroit — custom websites, branding, SEO and lead generation that convert visitors into customers.',
+      'VAUNT is a Michigan web design & digital marketing agency in West Bloomfield serving Oakland County, Metro Detroit and all of Michigan — custom websites, branding, SEO and lead generation that convert visitors into customers.',
     // Real 1200×630 screenshot of the homepage hero (see public/og-image.jpg).
     ogImage: 'https://www.vaunt.co/og-image.jpg',
     ogImageAlt:
