@@ -215,7 +215,7 @@ export const privacySections: TermsSection[] = [
   {
     title: '9. Contact Us',
     paras: [
-      'Questions about this policy? Contact us at info@vaunt.co, (248) 955-2428, or Vaunt LLC, 5553 Victoria Dr., West Bloomfield, MI 48322.',
+      'Questions about this policy? Contact us at info@vaunt.co, (248) 955-2428, or Vaunt LLC, West Bloomfield, MI 48322.',
     ],
   },
 ]

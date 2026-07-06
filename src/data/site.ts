@@ -17,9 +17,8 @@ export const site = {
     jacob: 'jacob@vaunt.co',
     staff: 'staff@vaunt.co',
   },
-  hq: '5553 Victoria Dr., West Bloomfield, MI 48322',
+  hq: 'West Bloomfield, MI 48322',
   address: {
-    street: '5553 Victoria Dr.',
     city: 'West Bloomfield',
     region: 'MI',
     regionName: 'Michigan',
@@ -48,8 +47,6 @@ export const site = {
     'Orchard Lake',
   ],
   geo: {
-    lat: 42.597066,
-    lng: -83.286078,
     region: 'US-MI',
     placename: 'West Bloomfield, Michigan',
   },

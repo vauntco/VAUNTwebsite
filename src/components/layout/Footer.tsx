@@ -32,7 +32,7 @@ export default function Footer() {
               </a>
               <span className="inline-flex items-start gap-2">
                 <MapPin size={15} className="mt-0.5 shrink-0 text-brand-bright" />
-                {site.brandName} · 5553 Victoria Dr. · West Bloomfield, MI 48322
+                {site.brandName} · West Bloomfield, MI
               </span>
             </div>
             <div className="mt-6">

@@ -96,11 +96,9 @@ export default function Seo({
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={ogImageAlt} />
 
-      {/* Local geo signals (business HQ) */}
+      {/* Local geo signals (business area) */}
       <meta name="geo.region" content={site.geo.region} />
       <meta name="geo.placename" content={site.geo.placename} />
-      <meta name="geo.position" content={`${site.geo.lat};${site.geo.lng}`} />
-      <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lng}`} />
 
       {graph && (
         <script type="application/ld+json">
