@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Linkedin, Youtube, Phone, Mail, MapPin } from 'lucide-react'
 import Logo from '../ui/Logo'
 import Button from '../ui/Button'
@@ -8,6 +8,8 @@ import { services } from '../../data/services'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  // The unlisted /book page hides the phone number (video-call bookings only).
+  const showPhone = useLocation().pathname !== '/book'
 
   return (
     <footer className="relative mt-8 border-t border-[var(--hairline)] bg-[var(--bg-elevated)]">
@@ -20,9 +22,11 @@ export default function Footer() {
               {site.mission}
             </p>
             <div className="mt-6 flex flex-col gap-2 text-sm text-ink-secondary">
-              <a href={site.phoneHref} className="inline-flex items-center gap-2 transition-colors hover:text-white">
-                <Phone size={15} className="text-brand-bright" /> {site.phone}
-              </a>
+              {showPhone && (
+                <a href={site.phoneHref} className="inline-flex items-center gap-2 transition-colors hover:text-white">
+                  <Phone size={15} className="text-brand-bright" /> {site.phone}
+                </a>
+              )}
               <a href={`mailto:${site.emails.info}`} className="inline-flex items-center gap-2 transition-colors hover:text-white">
                 <Mail size={15} className="text-brand-bright" /> {site.emails.info}
               </a>

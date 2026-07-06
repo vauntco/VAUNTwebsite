@@ -31,7 +31,6 @@ export const footerLinks: NavLink[] = [
   { label: 'Website Design Michigan', to: '/web-design-michigan' },
   { label: 'Work', to: '/work' },
   { label: 'Contact', to: '/contact' },
-  { label: 'Book a Call', to: '/book' },
   { label: 'Resources', to: '/blog' },
   { label: 'Testimonials', to: '/testimonials' },
   { label: 'Partner Program', to: '/partner-program' },

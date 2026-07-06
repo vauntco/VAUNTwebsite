@@ -21,8 +21,11 @@ function generateSitemap() {
         route = route.replace(/\/index\.html$/, '').replace(/\.html$/, '')
         if (route === '') route = '/'
         if (route === '/404') continue
+        const contents = fs.readFileSync(full, 'utf8')
         // Skip prerendered redirect stubs (meta-refresh pages) — they aren't canonical content.
-        if (fs.readFileSync(full, 'utf8').includes('http-equiv="refresh"')) continue
+        if (contents.includes('http-equiv="refresh"')) continue
+        // Skip noindex pages (e.g. the unlisted /book page) — they must not be in the sitemap.
+        if (/name="robots"\s+content="noindex/.test(contents)) continue
         if (!urls.includes(route)) urls.push(route)
       }
     }

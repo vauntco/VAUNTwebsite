@@ -1,10 +1,8 @@
 import { useEffect } from 'react'
-import { Phone, Clock, Video } from 'lucide-react'
+import { Clock, Video, BadgeCheck } from 'lucide-react'
 import Seo from '../lib/Seo'
-import { webPage, breadcrumb } from '../lib/schema'
 import PageHero from '../components/layout/PageHero'
 import FadeIn from '../components/motion/FadeIn'
-import { site } from '../data/site'
 
 // GHL / LeadConnector booking widget. The iframe is self-contained; form_embed.js
 // listens for postMessage height events and auto-resizes it by its id.
@@ -13,6 +11,11 @@ const BOOKING_IFRAME_ID = 'hgkS0VW9Q3ZH6VMcFFW3_1783370886855'
 const SCRIPT_SRC = 'https://app.vaunt.co/js/form_embed.js'
 const SCRIPT_ID = 'ghl-form-embed-js'
 
+/**
+ * Unlisted booking page. Reachable only via the direct /book URL Jacob shares —
+ * noindex, no internal links, and excluded from the sitemap (see vite.config.ts,
+ * which skips prerendered noindex pages).
+ */
 export default function Book() {
   useEffect(() => {
     if (document.getElementById(SCRIPT_ID)) return
@@ -28,16 +31,8 @@ export default function Book() {
       <Seo
         title="Book a Free Consultation"
         path="/book"
-        description="Book a free consultation with Vaunt — a Michigan web design & marketing agency in West Bloomfield. Pick a time that works for you and let's talk about your website, brand, and growth."
-        jsonLd={[
-          webPage({
-            title: 'Book a Free Consultation | VAUNT',
-            description:
-              'Schedule a free consultation with Vaunt, a Michigan web design & marketing agency in West Bloomfield.',
-            path: '/book',
-          }),
-          breadcrumb([{ name: 'Book a Call', path: '/book' }]),
-        ]}
+        description="Schedule a free video consultation with Vaunt."
+        noindex
       />
 
       <PageHero
@@ -47,16 +42,7 @@ export default function Book() {
             Book a <span className="text-brand-bright">Free Consultation</span>
           </>
         }
-        intro={
-          <>
-            Pick a time that works for you and we&apos;ll talk through your website, brand, and
-            growth goals — no pressure, no obligation. Prefer to talk now? Call{' '}
-            <a href={site.phoneHref} className="text-brand-bright hover:underline">
-              {site.phone}
-            </a>
-            .
-          </>
-        }
+        intro="Pick a time that works for you and we'll talk through your website, brand, and growth goals — no pressure, no obligation."
       />
 
       {/* Quick reassurance strip */}
@@ -64,9 +50,9 @@ export default function Book() {
         <div className="container-v">
           <FadeIn className="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
             {[
-              { icon: Clock, label: '30 minutes', sub: 'Quick, focused call' },
-              { icon: Video, label: 'Phone or video', sub: 'Whatever suits you' },
-              { icon: Phone, label: '100% free', sub: 'No obligation to book' },
+              { icon: Clock, label: '30 minutes', sub: 'Quick, focused session' },
+              { icon: Video, label: 'Video call', sub: 'Meet face to face' },
+              { icon: BadgeCheck, label: '100% free', sub: 'No obligation to book' },
             ].map((item) => (
               <div key={item.label} className="glass flex items-center gap-3 px-5 py-4">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[rgba(120,180,255,0.06)] text-brand-bright">
