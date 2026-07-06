@@ -51,7 +51,7 @@ export default function Book() {
           <FadeIn className="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
             {[
               { icon: Clock, label: '30 minutes', sub: 'Quick, focused session' },
-              { icon: Video, label: 'Video call', sub: 'Quick Zoom or Google Meet' },
+              { icon: Video, label: 'Video call', sub: 'Over Google Meet' },
               { icon: BadgeCheck, label: '100% free', sub: 'No obligation to book' },
             ].map((item) => (
               <div key={item.label} className="glass flex items-center gap-3 px-5 py-4">
