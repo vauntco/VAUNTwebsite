@@ -50,4 +50,5 @@ export const clientLogos: ClientLogo[] = [
   { name: 'Revive Restoration', src: '/logos/revive-restoration.png', lightCard: true },
   { name: 'Safe & Sound GPS', src: '/logos/safe-sound-gps.png' },
   { name: 'Mold Scope', src: '/logos/mold-scope.png' },
+  { name: "Matthew's Stop & Look", src: '/logos/matthews-auto.png' },
 ]
