@@ -6,6 +6,8 @@ import type { PortfolioItem } from '../../data/portfolio'
 interface Shot {
   src?: string
   label: string
+  /** Rendered on the rail thumbnail — only set when the gallery supplies labels. */
+  caption?: string
   kind: 'long' | 'mobile' | 'wide'
 }
 
@@ -13,8 +15,11 @@ function buildShots(item: PortfolioItem): Shot[] {
   const g = item.gallery
   if (g?.hero || g?.shots?.length) {
     const shots: Shot[] = []
-    if (g.hero) shots.push({ src: g.hero, label: 'Homepage', kind: 'long' })
-    g.shots?.forEach((s, i) => shots.push({ src: s, label: `View ${i + (g.hero ? 2 : 1)}`, kind: 'wide' }))
+    if (g.hero) shots.push({ src: g.hero, label: g.labels?.[0] ?? 'Homepage', caption: g.labels?.[0], kind: 'long' })
+    g.shots?.forEach((s, i) => {
+      const n = i + (g.hero ? 1 : 0)
+      shots.push({ src: s, label: g.labels?.[n] ?? `View ${n + 1}`, caption: g.labels?.[n], kind: 'wide' })
+    })
     return shots
   }
   // Placeholder set until real screenshots are provided.
@@ -178,13 +183,18 @@ export default function Lightbox({ item, onClose }: { item: PortfolioItem | null
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  aria-label={`View ${i + 1}`}
+                  aria-label={s.label}
                   aria-current={i === active}
                   className={`relative w-28 shrink-0 overflow-hidden rounded-lg border transition lg:w-full ${
                     i === active ? 'border-brand shadow-glow-sm' : 'border-[var(--glass-border)] opacity-60 hover:opacity-100'
                   }`}
                 >
                   <Thumb item={item} shot={s} />
+                  {s.caption && (
+                    <span className="absolute inset-x-0 bottom-0 bg-[rgba(5,7,10,0.78)] px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white backdrop-blur-sm">
+                      {s.caption}
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
