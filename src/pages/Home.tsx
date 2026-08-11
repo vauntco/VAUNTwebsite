@@ -38,7 +38,7 @@ export default function Home() {
       <Services />
       <PortfolioPreview />
       <SmartWebsites />
-      <VmsSection showTable={false} />
+      <VmsSection showTable={false} showDevices />
       <WhyUs />
       <Testimonials />
       <LogoMarquee />

@@ -4,18 +4,22 @@ import FadeIn from '../motion/FadeIn'
 import Button from '../ui/Button'
 import GlowIcon from '../ui/GlowIcon'
 import VmsLogo from '../ui/VmsLogo'
+import VmsDeviceHero from './VmsDeviceHero'
 import { vmsBlocks, vmsRows, vmsTotals } from '../../data/vms'
 
 /**
  * showHeading=false on the dedicated /vms page (PageHero already carries the title).
  * showTable=false on the homepage — the comparison table lives only on /vms.
+ * showDevices=true on the homepage — a device mockup teaser (full showcase is /vms only).
  */
 export default function VmsSection({
   showHeading = true,
   showTable = true,
+  showDevices = false,
 }: {
   showHeading?: boolean
   showTable?: boolean
+  showDevices?: boolean
 }) {
   return (
     <section id="vms" className="section-pad relative overflow-hidden">
@@ -37,8 +41,11 @@ export default function VmsSection({
           />
         )}
 
+        {/* Device mockup teaser — homepage only (full showcase lives on /vms) */}
+        {showDevices && <VmsDeviceHero className="mt-14" />}
+
         {/* Four narrative blocks */}
-        <div className={`grid gap-5 md:grid-cols-2 ${showHeading ? 'mt-14' : ''}`}>
+        <div className={`grid gap-5 md:grid-cols-2 ${showHeading || showDevices ? 'mt-14' : ''}`}>
           {vmsBlocks.map((block, i) => (
             <FadeIn key={block.index} delay={(i % 2) * 0.08}>
               <div className="glass glow-hover flex h-full flex-col p-7">
