@@ -26,6 +26,7 @@ export const clientLogos: ClientLogo[] = [
   { name: 'ZEUS', src: '/logos/zeus.png' },
   { name: "Pete's Tech Help", src: '/logos/petes-tech-help.png' },
   { name: 'Matrix Auto Collision', src: '/logos/matrix-collision.png' },
+  { name: 'Commerce Collision', src: '/logos/commerce-collision.png' },
   { name: 'Planet Materials', src: '/logos/planet-materials.png' },
   { name: "Tweny's Landscape", src: '/logos/twenys-landscape.png', lightCard: true },
   { name: 'EFLO', src: '/logos/eflo.png' },
