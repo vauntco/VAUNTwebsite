@@ -27,6 +27,7 @@ export const clientLogos: ClientLogo[] = [
   { name: "Pete's Tech Help", src: '/logos/petes-tech-help.png' },
   { name: 'Matrix Auto Collision', src: '/logos/matrix-collision.png' },
   { name: 'Commerce Collision', src: '/logos/commerce-collision.png' },
+  { name: 'Benchmark Wood Floors', src: '/logos/benchmark.png' },
   { name: 'Planet Materials', src: '/logos/planet-materials.png' },
   { name: "Tweny's Landscape", src: '/logos/twenys-landscape.png', lightCard: true },
   { name: 'EFLO', src: '/logos/eflo.png' },
