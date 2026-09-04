@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import FormConsent from './FormConsent'
+import { looksLikeBot } from '../../lib/spam'
 import { trackLeadConversion } from '../../lib/analytics'
 import { submitLead, ghlConfigured } from '../../lib/ghl'
 
@@ -18,14 +19,15 @@ const fields = [
 export default function ContactForm({ onPanel = false }: { onPanel?: boolean }) {
   const [status, setStatus] = useState<Status>('idle')
   const [error, setError] = useState('')
+  const mountedAt = useRef(Date.now())
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
     const data = Object.fromEntries(new FormData(form).entries())
 
-    // Honeypot — bots fill hidden fields.
-    if (data._gotcha) return
+    // Spam heuristics — hidden honeypot + too-fast submit. Silently drop bots.
+    if (looksLikeBot(data, mountedAt.current)) return
 
     setStatus('submitting')
     setError('')
@@ -108,7 +110,6 @@ export default function ContactForm({ onPanel = false }: { onPanel?: boolean }) 
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
       <div className="sm:col-span-2">
-        {/* TODO(Jacob): mount Google reCAPTCHA here with the Vaunt site key. */}
         <FormConsent compact />
       </div>
 

@@ -1,7 +1,8 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 import { ArrowRight, ChevronDown, CheckCircle2, Loader2 } from 'lucide-react'
 import FormConsent from './FormConsent'
 import { services } from '../../data/services'
+import { looksLikeBot } from '../../lib/spam'
 import { trackLeadConversion } from '../../lib/analytics'
 import { submitLead } from '../../lib/ghl'
 
@@ -13,11 +14,13 @@ type Status = 'idle' | 'submitting' | 'success'
 /** Compact "I'm ___ — ___. I need ___" quick-start form (hero CTA). */
 export default function HeroForm() {
   const [status, setStatus] = useState<Status>('idle')
+  const mountedAt = useRef(Date.now())
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
     const data = Object.fromEntries(new FormData(form).entries())
+    if (looksLikeBot(data, mountedAt.current)) return
     setStatus('submitting')
     try {
       await submitLead({
@@ -94,6 +97,9 @@ export default function HeroForm() {
           )}
         </button>
       </div>
+
+      {/* honeypot */}
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
       <div className="mt-3">
         <FormConsent compact />

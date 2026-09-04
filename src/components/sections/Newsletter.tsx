@@ -1,15 +1,19 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 import { Send, CheckCircle2 } from 'lucide-react'
 import { submitLead } from '../../lib/ghl'
+import { looksLikeBot } from '../../lib/spam'
 import FormConsent from '../forms/FormConsent'
 
 export default function Newsletter() {
   const [done, setDone] = useState(false)
   const [busy, setBusy] = useState(false)
+  const mountedAt = useRef(Date.now())
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const email = String(new FormData(e.currentTarget).get('email') ?? '')
+    const data = Object.fromEntries(new FormData(e.currentTarget).entries())
+    if (looksLikeBot(data, mountedAt.current)) return
+    const email = String(data.email ?? '')
     setBusy(true)
     try {
       await submitLead({ email, formType: 'Newsletter' })
@@ -51,6 +55,8 @@ export default function Newsletter() {
                 <button type="submit" disabled={busy} className="btn-cta shrink-0 disabled:opacity-60">
                   {busy ? 'Joining…' : <>Subscribe <Send size={16} /></>}
                 </button>
+                {/* honeypot */}
+                <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
               </form>
               <div className="w-full max-w-md text-center">
                 <FormConsent compact />
