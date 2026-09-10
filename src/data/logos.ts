@@ -45,8 +45,6 @@ export const clientLogos: ClientLogo[] = [
   { name: 'Dreamz Restoration', src: '/logos/dreamz-restoration.png' },
   { name: 'Metro Parcel & Freight', src: '/logos/metro-parcel.png' },
   { name: 'Power Rentals', src: '/logos/power-rentals.png' },
-  { name: 'Greg Davis Landscapes', src: '/logos/greg-davis.png', lightCard: true },
-  { name: 'Upon Arrival Deliveries', src: '/logos/upon-arrival.png' },
   { name: 'TagBuddy', src: '/logos/tagbuddy.png' },
   { name: 'Ayar Roofing', src: '/logos/avas-roofing.png' },
   { name: 'Revive Restoration', src: '/logos/revive-restoration.png', lightCard: true },
