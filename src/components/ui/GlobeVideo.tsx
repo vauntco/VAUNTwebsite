@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 
 /**
@@ -14,6 +14,28 @@ import { useReducedMotion } from 'framer-motion'
 export default function GlobeVideo() {
   const reduce = useReducedMotion()
   const [show, setShow] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Pause the globe during active scroll: compositing a live full-screen video
+  // under 40+ backdrop-filter cards is what makes scrolling stutter. It resumes
+  // ~200ms after scrolling stops, so it still animates when the page is still.
+  useEffect(() => {
+    if (!show) return
+    let timer: number | undefined
+    const onScroll = () => {
+      const v = videoRef.current
+      if (v && !v.paused) v.pause()
+      if (timer) clearTimeout(timer)
+      timer = window.setTimeout(() => {
+        videoRef.current?.play().catch(() => {})
+      }, 200)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (timer) clearTimeout(timer)
+    }
+  }, [show])
 
   useEffect(() => {
     if (reduce) return
@@ -39,6 +61,7 @@ export default function GlobeVideo() {
     <>
       {show && (
         <video
+          ref={videoRef}
           aria-hidden
           className="pointer-events-none fixed inset-0 -z-10 h-full w-full object-cover opacity-80"
           autoPlay

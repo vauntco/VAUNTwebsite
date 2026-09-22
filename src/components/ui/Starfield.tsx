@@ -32,7 +32,13 @@ export default function Starfield() {
       }))
     }
 
-    function draw() {
+    let last = 0
+    function draw(now = 0) {
+      if (!reduce) raf = requestAnimationFrame(draw)
+      // Cap to ~30fps — the field is barely-visible, and every repaint forces
+      // every overlapping glass card to re-blur its backdrop.
+      if (now - last < 33) return
+      last = now
       ctx!.clearRect(0, 0, window.innerWidth, window.innerHeight)
       for (const s of stars) {
         if (!reduce) {
@@ -48,7 +54,6 @@ export default function Starfield() {
         ctx!.fillStyle = `rgba(${150 + s.z * 90}, ${190 + s.z * 50}, 255, ${0.18 * s.z * twinkle})`
         ctx!.fill()
       }
-      if (!reduce) raf = requestAnimationFrame(draw)
     }
 
     resize()

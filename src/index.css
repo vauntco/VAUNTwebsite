@@ -11,7 +11,7 @@
   --bg-base: #05070a;
   --bg-elevated: #0e1217;
   --surface-card: #11151c;
-  --surface-glass: rgba(20, 28, 40, 0.45);
+  --surface-glass: rgba(18, 25, 36, 0.62);
 
   /* Brand blue */
   --blue: #1d9bf0;
@@ -81,10 +81,21 @@
   /* ---- Glass + glow primitives (Spec §2 recipes) ---- */
   .glass {
     background: var(--surface-glass);
-    -webkit-backdrop-filter: blur(18px) saturate(120%);
-    backdrop-filter: blur(18px) saturate(120%);
+    /* Blur radius is the single most expensive part of the frost; a more
+       opaque --surface-glass keeps the look while the smaller radius (and
+       cheaper saturate) slashes per-frame repaint cost over the video/starfield. */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
+  }
+  /* Skip the backdrop blur entirely on devices that can't scroll it smoothly. */
+  @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+    .glass {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: rgba(15, 21, 31, 0.9);
+    }
   }
 
   .glow {
