@@ -5,20 +5,26 @@ import type { PortfolioItem } from '../../data/portfolio'
 
 interface Shot {
   src?: string
+  /** Multi-page document (e.g. a brand guide) — all pages stacked in the main view. */
+  pages?: string[]
   label: string
   /** Rendered on the rail thumbnail — only set when the gallery supplies labels. */
   caption?: string
-  kind: 'long' | 'mobile' | 'wide'
+  kind: 'long' | 'mobile' | 'wide' | 'doc'
 }
 
 function buildShots(item: PortfolioItem): Shot[] {
   const g = item.gallery
-  if (g?.hero || g?.shots?.length) {
+  if (g?.hero || g?.shots?.length || g?.docs?.length) {
     const shots: Shot[] = []
     if (g.hero) shots.push({ src: g.hero, label: g.labels?.[0] ?? 'Homepage', caption: g.labels?.[0], kind: 'long' })
     g.shots?.forEach((s, i) => {
       const n = i + (g.hero ? 1 : 0)
       shots.push({ src: s, label: g.labels?.[n] ?? `View ${n + 1}`, caption: g.labels?.[n], kind: 'wide' })
+    })
+    // Multi-page documents collapse to a single rail thumbnail.
+    g.docs?.forEach((d) => {
+      shots.push({ pages: d.pages, src: d.thumb ?? d.pages[0], label: d.label, caption: d.label, kind: 'doc' })
     })
     return shots
   }
@@ -90,6 +96,15 @@ function Placeholder({ item, shot }: { item: PortfolioItem; shot: Shot }) {
 }
 
 function ShotView({ item, shot }: { item: PortfolioItem; shot: Shot }) {
+  if (shot.pages?.length) {
+    return (
+      <div>
+        {shot.pages.map((p, i) => (
+          <img key={i} src={p} alt={`${item.title} — ${shot.label} ${i + 1}`} loading={i === 0 ? undefined : 'lazy'} decoding="async" className="block w-full" />
+        ))}
+      </div>
+    )
+  }
   if (shot.src) {
     return <img src={shot.src} alt={`${item.title} — ${shot.label}`} decoding="async" className="block w-full" />
   }
